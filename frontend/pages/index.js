@@ -17,7 +17,7 @@ import HomeDefaultDealOfDay from '../components/partials/homepage/home-default/H
 import HomeDefaultTopCategories from '../components/partials/homepage/home-default/HomeDefaultTopCategories';
 import SubscribePopup from '../components/shared/SubscribePopup';
 import '../scss/home-default.scss';
-
+import HeaderTechnology from '../components/shared/headers/HeaderTechnology';
 const Index = () => {
     const [subscribe, setSubscribe] = useState(false);
     useEffect(() => {
@@ -27,7 +27,7 @@ const Index = () => {
     });
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <HeaderMobile />
             <NavigationList />
             <SubscribePopup active={subscribe} />
