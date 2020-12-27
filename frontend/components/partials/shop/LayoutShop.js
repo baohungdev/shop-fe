@@ -14,7 +14,7 @@ class LayoutShop extends Component {
         listView: true,
     };
 
-    handleChangeViewMode = event => {
+    handleChangeViewMode = (event) => {
         event.preventDefault();
         this.setState({ listView: !this.state.listView });
     };
@@ -31,23 +31,23 @@ class LayoutShop extends Component {
                         <RecommendItems />
                         <div className="ps-shopping__header">
                             <p>
-                                <strong className="mr-2">
+                                Có
+                                <strong className="mr-2 ml-2">
                                     {allProducts ? allProducts.length : 0}
                                 </strong>
-                                Products found
+                                sản phẩm
                             </p>
                             <div className="ps-shopping__actions">
                                 <select
                                     className="ps-select form-control"
-                                    data-placeholder="Sort Items">
-                                    <option>Sort by latest</option>
-                                    <option>Sort by popularity</option>
-                                    <option>Sort by average rating</option>
-                                    <option>Sort by price: low to high</option>
-                                    <option>Sort by price: high to low</option>
+                                    data-placeholder="Sắp xếp">
+                                    <option>Theo thời gian</option>
+                                    <option>Theo độ phổ biến</option>
+                                    <option>Giá tăng dần</option>
+                                    <option>Giá bán dần</option>
                                 </select>
                                 <div className="ps-shopping__view">
-                                    <p>View</p>
+                                    <p>Hiển thị</p>
                                     <ul className="ps-tab-list">
                                         <li
                                             className={
@@ -86,7 +86,7 @@ class LayoutShop extends Component {
                                 <div className="ps-shopping-product">
                                     <div className="row">
                                         {allProducts && allProducts.length > 0
-                                            ? allProducts.map(item => (
+                                            ? allProducts.map((item) => (
                                                   <div
                                                       className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-6 "
                                                       key={item.id}>
@@ -99,7 +99,7 @@ class LayoutShop extends Component {
                             ) : (
                                 <div className="ps-shopping-product">
                                     {allProducts && allProducts.length > 0
-                                        ? allProducts.map(item => (
+                                        ? allProducts.map((item) => (
                                               <ProductWide
                                                   product={item}
                                                   key={item.id}
@@ -122,18 +122,12 @@ class LayoutShop extends Component {
                                         </li>
                                         <li>
                                             <a href="#">
-                                                Next Page
+                                                Tiếp
                                                 <i className="icon-chevron-right"></i>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
-                                {/*  <Pagination
-                                    defaultCurrent={1}
-                                    total={allProducts ? allProducts.length : 0}
-                                    pageSize={this.state.pageSize}
-                                    onChange={this.handlePagination.bind(this)}
-                                />*/}
                             </div>
                         </div>
                     </div>

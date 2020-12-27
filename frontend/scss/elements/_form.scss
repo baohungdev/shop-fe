@@ -504,11 +504,11 @@ textarea.form-control {
         padding: 0 25px;
         text-align: center;
         font-size: 14px;
-        color: $color-heading;
+        color: $color-dark;
         @include border-radius(50px);
         background-color: transparent;
         @include placeholder() {
-            color: $color-heading;
+            color: $color-dark;
         }
     }
 }

@@ -12,7 +12,7 @@ class InformationQuickView extends Component {
         };
     }
 
-    handleAddItemToCart = e => {
+    handleAddItemToCart = (e) => {
         e.preventDefault();
         const { product } = this.props;
         let tempProduct = product;
@@ -20,12 +20,12 @@ class InformationQuickView extends Component {
         this.props.dispatch(addItem(product));
     };
 
-    handleIncreaseItemQty = e => {
+    handleIncreaseItemQty = (e) => {
         e.preventDefault();
         this.setState({ quantity: this.state.quantity + 1 });
     };
 
-    handleDecreaseItemQty = e => {
+    handleDecreaseItemQty = (e) => {
         e.preventDefault();
         if (this.state.quantity > 1) {
             this.setState({ quantity: this.state.quantity - 1 });
@@ -37,18 +37,7 @@ class InformationQuickView extends Component {
         return (
             <div className="ps-product__info">
                 <h1>{product.title}</h1>
-                <div className="ps-product__meta">
-                    <p>
-                        Brand:
-                        <Link href="/shop">
-                            <a className="ml-2 text-capitalize">{product.vendor}</a>
-                        </Link>
-                    </p>
-                    <div className="ps-product__rating">
-                        <Rating />
-                        <span>(1 review)</span>
-                    </div>
-                </div>
+                <div className="ps-product__meta"></div>
                 {product.sale === true ? (
                     <h4 className="ps-product__price sale">
                         ${product.price} <del>${product.salePrice}</del>
@@ -57,14 +46,6 @@ class InformationQuickView extends Component {
                     <h4 className="ps-product__price">${product.price}</h4>
                 )}
                 <div className="ps-product__desc">
-                    <p>
-                        Sold By:
-                        <Link href="/shop">
-                            <a>
-                                <strong> {product.vendor}</strong>
-                            </a>
-                        </Link>
-                    </p>
                     <ul className="ps-list--dot">
                         <li>
                             {' '}
@@ -82,7 +63,7 @@ class InformationQuickView extends Component {
                 </div>
                 <div className="ps-product__shopping">
                     <figure>
-                        <figcaption>Quantity</figcaption>
+                        <figcaption>Số lượng</figcaption>
                         <div className="form-group--number">
                             <button
                                 className="up"
@@ -97,25 +78,19 @@ class InformationQuickView extends Component {
                             <input
                                 className="form-control"
                                 type="text"
-                                placeholder={this.state.quantity}
+                                value={this.state.quantity}
                                 disabled
                             />
                         </div>
                     </figure>
                     <a
-                        className="ps-btn ps-btn--black"
+                        className="ps-btn"
                         href="#"
                         onClick={this.handleAddItemToCart.bind(this)}>
-                        Add to cart
-                    </a>
-                    <a className="ps-btn" href="#">
-                        Buy Now
+                        Thêm vào giỏ hàng
                     </a>
                 </div>
                 <div className="ps-product__specification">
-                    <Link href="/page/blank">
-                        <a className="report">Report Abuse</a>
-                    </Link>
                     <p>
                         <strong>SKU:</strong> SF1133569600-1
                     </p>
@@ -144,29 +119,12 @@ class InformationQuickView extends Component {
                         </Link>
                     </p>
                 </div>
-                <div className="ps-product__sharing">
-                    <a className="facebook" href="#">
-                        <i className="fa fa-facebook"></i>
-                    </a>
-                    <a className="twitter" href="#">
-                        <i className="fa fa-twitter"></i>
-                    </a>
-                    <a className="google" href="#">
-                        <i className="fa fa-google-plus"></i>
-                    </a>
-                    <a className="linkedin" href="#">
-                        <i className="fa fa-linkedin"></i>
-                    </a>
-                    <a className="instagram" href="#">
-                        <i className="fa fa-instagram"></i>
-                    </a>
-                </div>
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.cart;
 };
 export default connect(mapStateToProps)(InformationQuickView);

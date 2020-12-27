@@ -16,9 +16,9 @@ class ProductDetailImageSwatches extends Component {
         };
     }
 
-    handleSwitchVariant = variantId => {
+    handleSwitchVariant = (variantId) => {
         this.setState({ currentId: variantId });
-        imageSwatcher.variants.map(variant => {
+        imageSwatcher.variants.map((variant) => {
             if (parseInt(variant.id) === this.state.currentId) {
                 this.setState({ price: variant.price });
             }
@@ -26,7 +26,7 @@ class ProductDetailImageSwatches extends Component {
     };
 
     componentDidMount() {
-        imageSwatcher.variants.map(variant => {
+        imageSwatcher.variants.map((variant) => {
             if (parseInt(variant.id) === this.state.currentId) {
                 this.setState({ price: variant.price });
             }
@@ -54,52 +54,64 @@ class ProductDetailImageSwatches extends Component {
                     <div className="ps-product__thumbnail" data-vertical="true">
                         <figure>
                             <div className="ps-wrapper">
-                                {product.variants.map(variant => {
+                                {product.variants.map((variant) => {
                                     if (variant.id == this.state.currentId) {
                                         return (
                                             <Slider
                                                 {...gallerySetting}
                                                 key={variant.id}
-                                                ref={slider =>
+                                                ref={(slider) =>
                                                     (this.slider1 = slider)
                                                 }
                                                 asNavFor={
                                                     this.state.variantCarousel
                                                 }
                                                 className="ps-product__gallery ps-carousel">
-                                                {variant.thumbnail.map(item => (
-                                                    <div
-                                                        className="item"
-                                                        key={item.id}>
-                                                        <a href={item.image}>
-                                                            <img
-                                                                src={item.image}
-                                                                alt="martfury"
-                                                            />
-                                                        </a>
-                                                    </div>
-                                                ))}
+                                                {variant.thumbnail.map(
+                                                    (item) => (
+                                                        <div
+                                                            className="item"
+                                                            key={item.id}>
+                                                            <a
+                                                                href={
+                                                                    item.image
+                                                                }>
+                                                                <img
+                                                                    src={
+                                                                        item.image
+                                                                    }
+                                                                    alt="martfury"
+                                                                />
+                                                            </a>
+                                                        </div>
+                                                    )
+                                                )}
                                             </Slider>
                                         );
                                     }
                                 })}
                             </div>
                         </figure>
-                        {product.variants.map(variant => {
+                        {product.variants.map((variant) => {
                             if (variant.id == this.state.currentId) {
                                 return (
                                     <Slider
                                         key={variant.id}
                                         asNavFor={this.state.galleryCarousel}
-                                        ref={slider => (this.slider2 = slider)}
+                                        ref={(slider) =>
+                                            (this.slider2 = slider)
+                                        }
                                         swipeToSlide={true}
                                         slidesToShow={2}
                                         vertical={true}
                                         focusOnSelect={true}
                                         className="ps-product__variants">
-                                        {variant.thumbnail.map(item => (
+                                        {variant.thumbnail.map((item) => (
                                             <div className="item" key={item.id}>
-                                                <img src={item.image} alt="martfury" />
+                                                <img
+                                                    src={item.image}
+                                                    alt="martfury"
+                                                />
                                             </div>
                                         ))}
                                     </Slider>
@@ -115,13 +127,11 @@ class ProductDetailImageSwatches extends Component {
                                 Brand:<a href="shop-default.html">Adidas</a>
                             </p>
                             <div className="ps-product__rating">
-                                <Rating/>
+                                <Rating />
                                 <span>(1 review)</span>
                             </div>
                         </div>
-                        <h4 className="ps-product__price">
-                            ${product.price}
-                        </h4>
+                        <h4 className="ps-product__price">${product.price}</h4>
                         <div className="ps-product__desc">
                             <p>
                                 Sold By:
@@ -152,12 +162,12 @@ class ProductDetailImageSwatches extends Component {
                                 <figcaption>
                                     Color: <strong> Choose an option</strong>
                                 </figcaption>
-                                {product.variants.map(variant => {
+                                {product.variants.map((variant) => {
                                     return (
                                         <div
                                             className="ps-variant ps-variant--image"
                                             key={variant.id}
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.handleSwitchVariant(
                                                     variant.id
                                                 )
@@ -165,7 +175,10 @@ class ProductDetailImageSwatches extends Component {
                                             <span className="ps-variant__tooltip">
                                                 {variant.title}
                                             </span>
-                                            <img src={variant.image} alt="martfury" />
+                                            <img
+                                                src={variant.image}
+                                                alt="martfury"
+                                            />
                                         </div>
                                     );
                                 })}
@@ -247,23 +260,6 @@ class ProductDetailImageSwatches extends Component {
                                 <a href="#">technologies</a>,
                                 <a href="#">wireless</a>
                             </p>
-                        </div>
-                        <div className="ps-product__sharing">
-                            <a className="facebook" href="#">
-                                <i className="fa fa-facebook"></i>
-                            </a>
-                            <a className="twitter" href="#">
-                                <i className="fa fa-twitter"></i>
-                            </a>
-                            <a className="google" href="#">
-                                <i className="fa fa-google-plus"></i>
-                            </a>
-                            <a className="linkedin" href="#">
-                                <i className="fa fa-linkedin"></i>
-                            </a>
-                            <a className="instagram" href="#">
-                                <i className="fa fa-instagram"></i>
-                            </a>
                         </div>
                     </div>
                 </div>

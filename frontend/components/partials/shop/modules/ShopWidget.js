@@ -156,9 +156,9 @@ class ShopWidget extends Component {
         return (
             <div className="ps-layout__left">
                 <aside className="widget widget_shop">
-                    <h4 className="widget-title">Categories</h4>
+                    <h4 className="widget-title">Danh mục sản phẩm</h4>
                     <ul className="ps-list--categories">
-                        {shopCategories.map(category => (
+                        {shopCategories.map((category) => (
                             <li key={category.text}>
                                 <Link href={category.url}>
                                     <a>{category.text}</a>
@@ -168,15 +168,8 @@ class ShopWidget extends Component {
                     </ul>
                 </aside>
                 <aside className="widget widget_shop">
-                    <h4 className="widget-title">By Brands</h4>
+                    <h4 className="widget-title">Giá bán</h4>
                     <figure>
-                        <Checkbox.Group
-                            options={brands}
-                            onChange={this.handleFilterByBrand.bind(this)}
-                        />
-                    </figure>
-                    <figure>
-                        <h4 className="widget-title">By Price</h4>
                         <Slider
                             range
                             defaultValue={[0, 2000]}
@@ -184,7 +177,8 @@ class ShopWidget extends Component {
                             onAfterChange={this.handleChangeRange.bind(this)}
                         />
                         <p>
-                            Price: ${this.state.priceMin} - ${this.state.priceMax}
+                            Price: ${this.state.priceMin} - $
+                            {this.state.priceMax}
                         </p>
                     </figure>
                 </aside>
@@ -193,7 +187,7 @@ class ShopWidget extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.product;
 };
 export default connect(mapStateToProps)(ShopWidget);

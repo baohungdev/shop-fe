@@ -846,6 +846,9 @@
             &.ps-btn--black {
                 color: #fff;
             }
+            &:hover {
+                background-color: $color-1st-darker;
+            }
         }
 
         .ps-btn--gray {

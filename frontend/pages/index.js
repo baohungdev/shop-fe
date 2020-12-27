@@ -1,35 +1,67 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import FooterFullwidth from '../components/shared/footers/FooterFullwidth';
-import HomeBanner from '../components/partials/homepage/home-default/HomeBanner';
-import SiteFeatures from '../components/partials/homepage/home-default/SiteFeatures';
-import HomeAdsColumns from '../components/partials/homepage/home-default/HomeAdsColumns';
-import ConumerElectronics from '../components/partials/homepage/home-default/ConumerElectronics';
-import Clothings from '../components/partials/homepage/home-default/Clothings';
-import GardenAndKitchen from '../components/partials/homepage/home-default/GardenAndKitchen';
-import NewArrivals from '../components/partials/homepage/home-default/NewArrivals';
+import LayoutShop from '../components/partials/shop/LayoutShop';
 import HeaderMobile from '../components/shared/headers/HeaderMobile';
 import NavigationList from '../components/shared/navigation/NavigationList';
-import HomeDefaultTopCategories from '../components/partials/homepage/home-default/HomeDefaultTopCategories';
-import '../scss/home-default.scss';
+import ShopBanner from '../components/partials/shop/ShopBanner';
+import SiteFeatures from '../components/partials/homepage/home-default/SiteFeatures';
 import HeaderTechnology from '../components/shared/headers/HeaderTechnology';
-const Index = () => {
-    return (
-        <div className="site-content">
-            <HeaderTechnology />
-            <HeaderMobile />
-            <NavigationList />
-            <main id="homepage-1">
-                <HomeBanner />
-                <SiteFeatures />
-                <HomeAdsColumns />
-                <HomeDefaultTopCategories />
-                <ConumerElectronics />
-                <Clothings />
-                <GardenAndKitchen />
-                <NewArrivals />
-            </main>
-            <FooterFullwidth />
-        </div>
-    );
-};
-export default Index;
+import {
+    getProducts,
+    getProductsByCategory,
+    getProductsByBrand,
+} from '../store/product/action';
+
+class ShopDefaultPage extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    static async getInitialProps(ctx) {
+        if (Object.entries(ctx.query).length > 0) {
+            if (ctx.query.category) {
+                ctx.store.dispatch(getProductsByCategory(ctx.query.category));
+            } else {
+                if (ctx.query.brand !== '') {
+                    ctx.store.dispatch(getProductsByBrand(ctx.query.brand));
+                } else {
+                    ctx.store.dispatch(getProducts());
+                }
+            }
+        } else {
+            ctx.store.dispatch(getProducts());
+        }
+        return { query: ctx.query };
+    }
+
+    render() {
+        const breadCrumb = [
+            {
+                text: 'Home',
+                url: '/',
+            },
+            {
+                text: 'Shop Default',
+            },
+        ];
+        const { allProducts } = this.props;
+        return (
+            <div className="site-content">
+                <HeaderTechnology />
+                <HeaderMobile />
+                <NavigationList />
+                <div className="ps-page--shop">
+                    <div className="ps-container">
+                        <ShopBanner />
+                        <SiteFeatures />
+                        <LayoutShop products={allProducts} />
+                    </div>
+                </div>
+                <FooterFullwidth />
+            </div>
+        );
+    }
+}
+
+export default connect((state) => state.product)(ShopDefaultPage);

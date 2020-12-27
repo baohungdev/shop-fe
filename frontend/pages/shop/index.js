@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import FooterDefault from '../../components/shared/footers/FooterDefault';
-import HeaderDefault from '../../components/shared/headers/HeaderDefault';
-import Newletters from '../../components/partials/commons/Newletters';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
 import LayoutShop from '../../components/partials/shop/LayoutShop';
-import BreadCrumb from '../../components/elements/BreadCrumb';
 import HeaderMobile from '../../components/shared/headers/HeaderMobile';
 import NavigationList from '../../components/shared/navigation/NavigationList';
-import ShopBrands from '../../components/partials/shop/ShopBrands';
 import ShopBanner from '../../components/partials/shop/ShopBanner';
-import ShopCategories from '../../components/partials/shop/ShopCategories';
+import SiteFeatures from '../../components/partials/homepage/home-default/SiteFeatures';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 import {
     getProducts,
     getProductsByCategory,
@@ -51,23 +48,20 @@ class ShopDefaultPage extends React.Component {
         const { allProducts } = this.props;
         return (
             <div className="site-content">
-                <HeaderDefault />
+                <HeaderTechnology />
                 <HeaderMobile />
                 <NavigationList />
                 <div className="ps-page--shop">
-                    <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
                     <div className="ps-container">
                         <ShopBanner />
-                        <ShopBrands />
-                        <ShopCategories />
+                        <SiteFeatures />
                         <LayoutShop products={allProducts} />
                     </div>
                 </div>
-                <Newletters layout="container" />
-                <FooterDefault />
+                <FooterFullwidth />
             </div>
         );
     }
 }
 
-export default connect(state => state.product)(ShopDefaultPage);
+export default connect((state) => state.product)(ShopDefaultPage);

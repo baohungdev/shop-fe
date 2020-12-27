@@ -13,30 +13,30 @@ class ProductWide extends Component {
         };
     }
 
-    handleAddItemToCart = e => {
+    handleAddItemToCart = (e) => {
         e.preventDefault();
         const { product } = this.props;
         this.props.dispatch(addItem(product));
     };
 
-    handleAddItemToCompare = e => {
+    handleAddItemToCompare = (e) => {
         e.preventDefault();
         const { product } = this.props;
         this.props.dispatch(addItemToCompare(product));
     };
 
-    handleAddItemToWishlist = e => {
+    handleAddItemToWishlist = (e) => {
         e.preventDefault();
         const { product } = this.props;
         this.props.dispatch(addItemToWishlist(product));
     };
 
-    handleShowQuickView = e => {
+    handleShowQuickView = (e) => {
         e.preventDefault();
         this.setState({ isQuickView: true });
     };
 
-    handleHideQuickView = e => {
+    handleHideQuickView = (e) => {
         e.preventDefault();
         this.setState({ isQuickView: false });
     };
@@ -45,20 +45,10 @@ class ProductWide extends Component {
         const { product, currency } = this.props;
         let productRating = null;
         if (product.badge) {
-            product.badge.map(badge => {
-                if (badge.type === 'sale') {
-                    return (productRating = (
-                        <div className="ps-product__badge">{badge.value}</div>
-                    ));
-                } else if (badge.type === 'outStock') {
+            product.badge.map((badge) => {
+                if (badge.type === 'outStock') {
                     return (productRating = (
                         <div className="ps-product__badge.out-stock">
-                            {badge.value}
-                        </div>
-                    ));
-                } else {
-                    return (productRating = (
-                        <div className="ps-product__badge.hot">
                             {badge.value}
                         </div>
                     ));
@@ -81,12 +71,6 @@ class ProductWide extends Component {
                             as={`/product/${product.id}`}>
                             <a className="ps-product__title">{product.title}</a>
                         </Link>
-                        <p className="ps-product__vendor">
-                            Sold by:
-                            <Link href="/shop">
-                                <a>{product.vendor}</a>
-                            </Link>
-                        </p>
                         <ul className="ps-product__desc">
                             <li>
                                 Unrestrained and portable active stereo speaker
@@ -120,28 +104,8 @@ class ProductWide extends Component {
                             className="ps-btn"
                             href="#"
                             onClick={this.handleAddItemToCart.bind(this)}>
-                            Add to cart
+                            Thêm vào giỏ hàng
                         </a>
-                        <ul className="ps-product__actions">
-                            <li>
-                                <a
-                                    href="#"
-                                    onClick={this.handleAddItemToWishlist.bind(
-                                        this
-                                    )}>
-                                    <i className="icon-heart"></i> Wishlist
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    onClick={this.handleAddItemToCompare.bind(
-                                        this
-                                    )}>
-                                    <i className="icon-chart-bars"></i> Compare
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -149,7 +113,7 @@ class ProductWide extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.setting;
 };
 export default connect(mapStateToProps)(ProductWide);
