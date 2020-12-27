@@ -14,46 +14,47 @@ import {
     getCartErrorFromDb,
     updateCartSuccess,
     updateCartError,
-    clearCartSuccess
+    clearCartSuccess,
 } from './action';
 
-import {
-    getAuth,
-    getCart
-} from '../selectors'
+import { getAuth, getCart } from '../selectors';
 
-const modalSuccess = type => {
+const modalSuccess = (type) => {
     notification[type]({
-        message: 'Success',
-        description: 'This product has been added to your cart!',
+        message: 'Lựa chọn hợp lý',
+        description: 'Sản phẩm đã được thêm vào giỏ hàng của bạn!',
         duration: 1,
     });
 };
-const modalWarning = type => {
+const modalWarning = (type) => {
     notification[type]({
-        message: 'Remove A Item',
-        description: 'This product has been removed from your cart!',
+        message: 'Hmm, đã xoá',
+        description: 'Sản phẩm đã được xoá khỏi giỏ hàng của bạn',
         duration: 1,
     });
 };
 
-export const calculateAmount = obj =>
+export const calculateAmount = (obj) =>
     Object.values(obj)
         .reduce((acc, { quantity, price }) => acc + quantity * price, 0)
         .toFixed(2);
 
-function* getCartSaga() { 
-    const auth = yield select(getAuth)
-    if(auth && auth.isLoggedIn) {
+function* getCartSaga() {
+    const auth = yield select(getAuth);
+    if (auth && auth.isLoggedIn) {
         try {
-            let cartItems =[]
-            let quantity = 0
-            let amount = 0
-            let cartTotal = 0
-            const res = yield call(axios.post, server + endpoints.GETCART, auth);
-            if(res.data.length > 0) {
+            let cartItems = [];
+            let quantity = 0;
+            let amount = 0;
+            let cartTotal = 0;
+            const res = yield call(
+                axios.post,
+                server + endpoints.GETCART,
+                auth
+            );
+            if (res.data.length > 0) {
                 cartItems = res.data.map((item) => {
-                    cartTotal = cartTotal + item.Quantity
+                    cartTotal = cartTotal + item.Quantity;
                     return {
                         badge: [],
                         brand: [],
@@ -62,27 +63,32 @@ function* getCartSaga() {
                         id: item.CartID,
                         price: item.Product ? +item.Product.price : 0,
                         quantity: +item.Quantity,
-                        rating: item.Product && +item.Product.rating > 0 ? true : false,
+                        rating:
+                            item.Product && +item.Product.rating > 0
+                                ? true
+                                : false,
                         ratingCount: item.Product ? +item.Product.rating : 0,
                         sale: false,
                         salePrice: 0,
                         thumbnail: item.Product ? item.Product.img : '',
-                        title: item.Product ? item.Product.title : ''
-                    }
-                })
+                        title: item.Product ? item.Product.title : '',
+                    };
+                });
                 amount = calculateAmount(cartItems);
-                quantity = cartItems.length
+                quantity = cartItems.length;
             }
-            yield put(getCartSuccessFromDb({
-                cartItems,
-                quantity,
-                amount,
-                cartTotal
-            }));
-        } catch (err) { 
+            yield put(
+                getCartSuccessFromDb({
+                    cartItems,
+                    quantity,
+                    amount,
+                    cartTotal,
+                })
+            );
+        } catch (err) {
             yield put(getCartErrorFromDb(err));
         }
-    }else{
+    } else {
         try {
             yield put(getCartSuccess());
         } catch (err) {
@@ -92,14 +98,14 @@ function* getCartSaga() {
 }
 
 function* addItemSaga(payload) {
-    const { product } = payload; 
-    const auth = yield select(getAuth)
+    const { product } = payload;
+    const auth = yield select(getAuth);
 
-    if(auth && auth.isLoggedIn) {
+    if (auth && auth.isLoggedIn) {
         try {
-            let currentCart = yield select(getCart)
+            let currentCart = yield select(getCart);
             let existItem = currentCart.cartItems.find(
-                item => item.id === product.id
+                (item) => item.id === product.id
             );
             if (existItem) {
                 existItem.quantity += product.quantity;
@@ -111,22 +117,29 @@ function* addItemSaga(payload) {
             }
             currentCart.amount = calculateAmount(currentCart.cartItems);
             currentCart.cartTotal++;
-            
-            const res = yield call(axios.post, server + endpoints.ADDCART, { product: product, auth: auth });
 
-            if(!res.data.errors) {
+            const res = yield call(axios.post, server + endpoints.ADDCART, {
+                product: product,
+                auth: auth,
+            });
+
+            if (!res.data.errors) {
                 yield put(updateCartSuccess(currentCart));
                 modalSuccess('success');
             }
         } catch (err) {
-            yield put(getCartError(err.response && err.response.data || 'Failed'));
+            yield put(
+                getCartError((err.response && err.response.data) || 'Failed')
+            );
         }
-    }else{
+    } else {
         try {
-            const localCart = JSON.parse(localStorage.getItem('persist:martfury')).cart;
+            const localCart = JSON.parse(
+                localStorage.getItem('persist:martfury')
+            ).cart;
             let currentCart = JSON.parse(localCart);
             let existItem = currentCart.cartItems.find(
-                item => item.id === product.id
+                (item) => item.id === product.id
             );
             if (existItem) {
                 existItem.quantity += product.quantity;
@@ -138,7 +151,7 @@ function* addItemSaga(payload) {
             }
             currentCart.amount = calculateAmount(currentCart.cartItems);
             currentCart.cartTotal++;
-    
+
             yield put(updateCartSuccess(currentCart));
             modalSuccess('success');
         } catch (err) {
@@ -148,14 +161,14 @@ function* addItemSaga(payload) {
 }
 
 function* removeItemSaga(payload) {
-    const { product } = payload; 
-    const auth = yield select(getAuth)
+    const { product } = payload;
+    const auth = yield select(getAuth);
 
-    if(auth && auth.isLoggedIn) {
+    if (auth && auth.isLoggedIn) {
         try {
-            let currentCart = yield select(getCart)
+            let currentCart = yield select(getCart);
             let index = currentCart.cartItems.indexOf(product);
-            const removeItem = { ...currentCart.cartItems[index] }
+            const removeItem = { ...currentCart.cartItems[index] };
 
             currentCart.cartTotal = currentCart.cartTotal - product.quantity;
             currentCart.cartItems.splice(index, 1);
@@ -167,15 +180,18 @@ function* removeItemSaga(payload) {
                 currentCart.cartTotal = 0;
             }
 
-            const res = yield call(axios.post, server + endpoints.REMOVECART, { removeItem: removeItem, auth: auth });
-            if(!res.data.errors) {
+            const res = yield call(axios.post, server + endpoints.REMOVECART, {
+                removeItem: removeItem,
+                auth: auth,
+            });
+            if (!res.data.errors) {
                 yield put(updateCartSuccess(currentCart));
                 modalWarning('warning');
             }
-        } catch(err) {
+        } catch (err) {
             yield put(getCartError(err));
         }
-    }else{
+    } else {
         try {
             let localCart = JSON.parse(
                 JSON.parse(localStorage.getItem('persist:martfury')).cart
@@ -198,14 +214,14 @@ function* removeItemSaga(payload) {
 }
 
 function* increaseQtySaga(payload) {
-    const { product } = payload; 
-    const auth = yield select(getAuth)
+    const { product } = payload;
+    const auth = yield select(getAuth);
 
-    if(auth && auth.isLoggedIn) {
+    if (auth && auth.isLoggedIn) {
         try {
-            let currentCart = yield select(getCart)
+            let currentCart = yield select(getCart);
             let selectedItem = currentCart.cartItems.find(
-                item => item.id === product.id
+                (item) => item.id === product.id
             );
             if (selectedItem) {
                 selectedItem.quantity++;
@@ -213,20 +229,24 @@ function* increaseQtySaga(payload) {
                 currentCart.amount = calculateAmount(currentCart.cartItems);
             }
 
-            const res = yield call(axios.post, server + endpoints.INCREASEQUANTITY, { selectedItem: selectedItem, auth: auth });
-            if(!res.data.errors) {
+            const res = yield call(
+                axios.post,
+                server + endpoints.INCREASEQUANTITY,
+                { selectedItem: selectedItem, auth: auth }
+            );
+            if (!res.data.errors) {
                 yield put(updateCartSuccess(currentCart));
             }
         } catch (err) {
             yield put(getCartError(err));
         }
-    }else{
+    } else {
         try {
             let localCart = JSON.parse(
                 JSON.parse(localStorage.getItem('persist:martfury')).cart
             );
             let selectedItem = localCart.cartItems.find(
-                item => item.id === product.id
+                (item) => item.id === product.id
             );
             if (selectedItem) {
                 selectedItem.quantity++;
@@ -241,38 +261,42 @@ function* increaseQtySaga(payload) {
 }
 
 function* decreaseItemQtySaga(payload) {
-    const { product } = payload; 
-    const auth = yield select(getAuth)
+    const { product } = payload;
+    const auth = yield select(getAuth);
 
-    if(auth && auth.isLoggedIn) {
+    if (auth && auth.isLoggedIn) {
         try {
-            let currentCart = yield select(getCart)
+            let currentCart = yield select(getCart);
             let selectedItem = currentCart.cartItems.find(
-                item => item.id === product.id
+                (item) => item.id === product.id
             );
-            
+
             if (selectedItem) {
                 selectedItem.quantity--;
                 currentCart.cartTotal--;
                 currentCart.amount = calculateAmount(currentCart.cartItems);
             }
 
-            const res = yield call(axios.post, server + endpoints.DECREASEQUANTITY, { selectedItem: selectedItem, auth: auth });
-            if(!res.data.errors) {
+            const res = yield call(
+                axios.post,
+                server + endpoints.DECREASEQUANTITY,
+                { selectedItem: selectedItem, auth: auth }
+            );
+            if (!res.data.errors) {
                 yield put(updateCartSuccess(currentCart));
             }
         } catch (err) {
             yield put(getCartError(err));
         }
-    }else{
+    } else {
         try {
             const localCart = JSON.parse(
                 JSON.parse(localStorage.getItem('persist:martfury')).cart
             );
             let selectedItem = localCart.cartItems.find(
-                item => item.id === product.id
+                (item) => item.id === product.id
             );
-    
+
             if (selectedItem) {
                 selectedItem.quantity--;
                 localCart.cartTotal--;
@@ -286,22 +310,24 @@ function* decreaseItemQtySaga(payload) {
 }
 
 function* clearCartSaga() {
-    const auth = yield select(getAuth)
+    const auth = yield select(getAuth);
     const emptyCart = {
         cartItems: [],
         amount: 0,
         cartTotal: 0,
     };
-    if(auth && auth.isLoggedIn) {
+    if (auth && auth.isLoggedIn) {
         try {
-            const res = yield call(axios.post, server + endpoints.CLEARCART, { auth: auth });
-            if(!res.data.errors) {
+            const res = yield call(axios.post, server + endpoints.CLEARCART, {
+                auth: auth,
+            });
+            if (!res.data.errors) {
                 yield put(clearCartSuccess(emptyCart));
             }
         } catch (err) {
             yield put(updateCartError(err));
         }
-    }else{
+    } else {
         try {
             yield put(clearCartSuccess(emptyCart));
         } catch (err) {

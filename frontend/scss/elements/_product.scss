@@ -178,7 +178,7 @@
 
     .ps-product__content {
         > p {
-            color: $color-heading;
+            color: $color-dark;
         }
 
         &.hover {
@@ -426,7 +426,7 @@
 
     .ps-product__price {
         font-size: 16px;
-        color: $color-heading;
+        color: $color-dark;
 
         &.sale {
             color: #f30;
@@ -497,7 +497,9 @@
         }
 
         p {
+            color: $color-dark;
             strong {
+                color: $color-dark;
                 font-weight: 500;
             }
         }
@@ -2098,14 +2100,14 @@
 
         p {
             strong {
-                color: $color-heading;
+                color: $color-dark;
                 font-weight: 500;
             }
         }
 
         small {
             font-size: 14px;
-            color: $color-heading;
+            color: $color-dark;
         }
     }
 }

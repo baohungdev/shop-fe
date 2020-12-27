@@ -4,22 +4,28 @@ import Link from 'next/link';
 const FooterWidgets = () => (
     <div className="ps-footer__widgets">
         <aside className="widget widget_footer widget_contact-us">
-            <h4 className="widget-title">Contact us</h4>
+            <h4 className="widget-title">Liên hệ với chúng tôi</h4>
             <div className="widget_content">
-                <p>Call us 24/7</p>
-                <h3>1800 97 97 69</h3>
+                <p>Tổng đài 24/7</p>
+                <h3>0981 925 281</h3>
                 <p>
-                    502 New Design Str, Melbourne, Australia <br />
-                    <a href="mailto:contact@martfury.co">contact@martfury.co</a>
+                    KTX khu B, Đại học quốc gia TP Hồ Chí Minh <br />
+                    <a href="mailto:donghuuhieu1520@gmail.com">
+                        donghuuhieu1520@gmail.com
+                    </a>
                 </p>
                 <ul className="ps-list--social">
                     <li>
-                        <a className="facebook" href="#">
+                        <a
+                            className="facebook"
+                            href="https://facebook.com/stewie1520">
                             <i className="fa fa-facebook"></i>
                         </a>
                     </li>
                     <li>
-                        <a className="twitter" href="#">
+                        <a
+                            className="twitter"
+                            href="https://twitter.com/dongedward1">
                             <i className="fa fa-twitter"></i>
                         </a>
                     </li>
@@ -29,7 +35,9 @@ const FooterWidgets = () => (
                         </a>
                     </li>
                     <li>
-                        <a className="instagram" href="#">
+                        <a
+                            className="instagram"
+                            href="https://instagram.com/resol1520">
                             <i className="fa fa-instagram"></i>
                         </a>
                     </li>
@@ -37,87 +45,31 @@ const FooterWidgets = () => (
             </div>
         </aside>
         <aside className="widget widget_footer">
-            <h4 className="widget-title">Quick links</h4>
+            <h4 className="widget-title">Liên kết</h4>
             <ul className="ps-list--link">
                 <li>
                     <Link href="/page/blank">
-                        <a>Policy</a>
-                    </Link>
-                </li>
-
-                <li>
-                    <Link href="/page/blank">
-                        <a>Term & Condition</a>
+                        <a>Chính sách</a>
                     </Link>
                 </li>
                 <li>
                     <Link href="/page/blank">
-                        <a>Term & Condition</a>
+                        <a>Vận chuyển</a>
                     </Link>
                 </li>
                 <li>
                     <Link href="/page/blank">
-                        <a>Shipping</a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/page/blank">
-                        <a>Return</a>
+                        <a>Trả hàng</a>
                     </Link>
                 </li>
                 <li>
                     <Link href="/page/faqs">
-                        <a>FAQs</a>
-                    </Link>
-                </li>
-            </ul>
-        </aside>
-        <aside className="widget widget_footer">
-            <h4 className="widget-title">Company</h4>
-            <ul className="ps-list--link">
-                <li>
-                    <Link href="/page/about-us">
-                        <a>About Us</a>
+                        <a>Câu hỏi thường gặp</a>
                     </Link>
                 </li>
                 <li>
                     <Link href="/page/blank">
-                        <a>Affilate</a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/page/blank">
-                        <a>Career</a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/page/contact-us">
-                        <a>Contact</a>
-                    </Link>
-                </li>
-            </ul>
-        </aside>
-        <aside className="widget widget_footer">
-            <h4 className="widget-title">Bussiness</h4>
-            <ul className="ps-list--link">
-                <li>
-                    <Link href="/page/about-us">
-                        <a>Our Press</a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/account/checkout">
-                        <a>Checkout</a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/account/user-information">
-                        <a>My account</a>
-                    </Link>
-                </li>
-                <li>
-                    <Link href="/shop">
-                        <a>Shop</a>
+                        <a>Trang dành cho nhân viên</a>
                     </Link>
                 </li>
             </ul>

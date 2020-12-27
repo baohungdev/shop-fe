@@ -50,10 +50,11 @@
             margin-bottom: 20px;
             font-size: 18px;
             font-weight: 600;
+            color: $color-dark;
 
             strong {
                 float: right;
-                color: red;
+                color: #5687a3;
             }
         }
     }
@@ -66,6 +67,10 @@
 
         .ps-btn {
             padding: 12px 25px;
+            color: $color-heading;
+            &:hover {
+                background-color: $color-1st-darker;
+            }
         }
     }
 
@@ -86,13 +91,12 @@
     }
 
     .ps-cart__footer {
-
         h3 {
             display: block;
             margin-bottom: 20px;
             font-size: 18px;
             font-weight: 600;
-
+            color: $color-dark;
             strong {
                 float: right;
                 color: red;

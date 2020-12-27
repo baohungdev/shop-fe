@@ -8,7 +8,7 @@ class NewArrivals extends Component {
             <div className="ps-product-list ps-new-arrivals">
                 <div className="ps-container">
                     <div className="ps-section__header">
-                        <h3>Hot New Arrivals</h3>
+                        <h3>Sản phẩm mới</h3>
                         <ul className="ps-section__links">
                             <li>
                                 <a href="shop-grid.html">Technologies</a>
@@ -32,7 +32,7 @@ class NewArrivals extends Component {
                     </div>
                     <div className="ps-section__content">
                         <div className="row">
-                            {products.newArrivals.map(product => (
+                            {products.newArrivals.map((product) => (
                                 <div
                                     className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 "
                                     key={product.title}>

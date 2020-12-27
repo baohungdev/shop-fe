@@ -12,13 +12,12 @@ class MiniCart extends Component {
         this.props.dispatch(getCart());
     }
 
-    handleRemoveCartItem = product => {
+    handleRemoveCartItem = (product) => {
         this.props.dispatch(removeItem(product));
     };
 
     render() {
         const { cart } = this.props;
-        // console.log(cart.cartItems)
         return (
             <div className="ps-cart--mini">
                 <a className="header__extra" href="#">
@@ -58,13 +57,15 @@ class MiniCart extends Component {
                                                   )}>
                                                   <i className="icon-cross"></i>
                                               </a>
-                                              <Link href="/product/[pid]" as={`/product/${product.id}`}>
+                                              <Link
+                                                  href="/product/[pid]"
+                                                  as={`/product/${product.id}`}>
                                                   <a className="ps-product__title">
                                                       {product.title}
                                                   </a>
                                               </Link>
                                               <p>
-                                                  <strong>Sold by:</strong>{' '}
+                                                  <strong>Bán bởi:</strong>{' '}
                                                   {product.vendor}
                                               </p>
                                               <small>
@@ -78,15 +79,17 @@ class MiniCart extends Component {
                         </div>
                         <div className="ps-cart__footer">
                             <h3>
-                                Sub Total:
-                                <strong>${cart.amount ? cart.amount : 0}</strong>
+                                Tạm tính:
+                                <strong>
+                                    ${cart.amount ? cart.amount : 0}
+                                </strong>
                             </h3>
                             <figure>
                                 <Link href="/account/shopping-cart" as="/cart">
-                                    <a className="ps-btn">View Cart</a>
+                                    <a className="ps-btn">Xem giỏ hàng</a>
                                 </Link>
                                 <Link href="/account/checkout" as="/checkout">
-                                    <a className="ps-btn">Checkout</a>
+                                    <a className="ps-btn">Thanh toán</a>
                                 </Link>
                             </figure>
                         </div>
@@ -94,7 +97,7 @@ class MiniCart extends Component {
                 ) : (
                     <div className="ps-cart__content">
                         <div className="ps-cart__items">
-                            <span>No products in cart</span>
+                            <span>Bạn chưa có sản phẩm</span>
                         </div>
                     </div>
                 )}
@@ -102,10 +105,10 @@ class MiniCart extends Component {
         );
     }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         cart: state.cart,
-        auth: state.auth
+        auth: state.auth,
     };
 };
 export default connect(mapStateToProps)(MiniCart);

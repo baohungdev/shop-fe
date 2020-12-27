@@ -100,8 +100,13 @@
         }
 
         &:hover {
+            span {
+                i {
+                    color: #fff;
+                }
+            }
             i {
-                color: #ffffff;
+                color: $color-1st;
             }
         }
     }
@@ -328,7 +333,7 @@
         width: 600px;
 
         button {
-            background-color: #fcb800;
+            background-color: $color-1st;
             color: $color-heading;
         }
 
@@ -423,7 +428,6 @@
         @include hidden();
         height: 0;
     }
-
 
     &.header--sticky {
         @include show;

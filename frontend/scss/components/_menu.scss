@@ -39,7 +39,7 @@
     left: 0;
     min-width: 240px;
     z-index: 1000;
-    @include transition(all .25s ease);
+    @include transition(all 0.25s ease);
     background-color: #fff;
     border: 1px solid #ccc;
     @include hidden;
@@ -62,7 +62,7 @@
             padding: 6px 20px;
             width: 100%;
             font-size: 14px;
-            color: $color-heading;
+            color: $color-dark;
             text-transform: capitalize;
             @include transition(all 0.8s $ease-out-expo);
 
@@ -127,7 +127,7 @@
         margin-bottom: 10px;
         font-size: 16px;
         font-weight: 600;
-        color: $color-heading;
+        color: $color-dark;
     }
 
     .mega-menu__column {
@@ -140,7 +140,7 @@
         li {
             a {
                 display: block;
-                color: $color-heading;
+                color: $color-dark;
                 line-height: 20px;
                 padding: 5px 0;
                 font-size: 14px;
@@ -193,7 +193,7 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 20px;
-            color: $color-heading;
+            color: $color-dark;
 
             &:hover {
                 color: $color-heading;
@@ -321,7 +321,7 @@
 
         span {
             font-size: 20px;
-            color: $color-heading;
+            color: $color-dark;
             font-size: 16px;
             font-weight: 600;
         }
@@ -333,7 +333,7 @@
             left: 0;
             width: 100%;
             height: 1px;
-            background-color: $color-heading;
+            background-color: $color-dark;
             transition: transform 0.75s $timing-1;
             @include transform(scale3d(0, 1, 1));
             @include transform-origin(100% 50%);
@@ -383,7 +383,7 @@
         > a {
             display: block;
             padding: 10px 0;
-            color: $color-heading;
+            color: $color-dark;
 
             i {
                 margin-right: 10px;
@@ -405,7 +405,6 @@
 
         &:hover {
             background-color: $color-1st;
-
             &.has-mega-menu {
                 .mega-menu {
                     @include show;
@@ -523,7 +522,6 @@
         }
     }
 }
-
 
 .menu--mobile-2 {
     .ant-menu-submenu {

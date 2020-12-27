@@ -22,7 +22,7 @@ class SearchHeader extends Component {
         let matches = [];
         let regexp = new RegExp(keyword.toLowerCase(), 'g');
 
-        object.forEach(product => {
+        object.forEach((product) => {
             if (product.title.toLowerCase().match(regexp))
                 matches.push(product);
         });
@@ -131,7 +131,7 @@ class SearchHeader extends Component {
             },
         ];
         const exampleCategories = [
-            'All',
+            'Tất cả',
             'Babies & Moms',
             'Books & Office',
             'Cars & Motocycles',
@@ -196,7 +196,7 @@ class SearchHeader extends Component {
                 onSubmit={this.handleSubmit.bind(this)}>
                 <div className="ps-form__categories">
                     <select className="form-control">
-                        {exampleCategories.map(option => (
+                        {exampleCategories.map((option) => (
                             <option value={option} key={option}>
                                 {option}
                             </option>
@@ -206,17 +206,17 @@ class SearchHeader extends Component {
                 <input
                     className="form-control"
                     type="text"
-                    placeholder="I'm shopping for..."
+                    placeholder="Tìm sản phẩm..."
                     onChange={this.handleSearch.bind(this)}
                 />
-                <button onClick={this.handleSubmit.bind(this)}>Search</button>
+                <button onClick={this.handleSubmit.bind(this)}>Tìm</button>
                 <div
                     className={`ps-panel--search-result${
                         searchPanel && searchPanel === true ? ' active ' : ''
                     }`}>
                     <div className="ps-panel__content">
                         {searchProducts.length > 0 ? (
-                            searchProducts.map(product => (
+                            searchProducts.map((product) => (
                                 <ProductResult
                                     product={product}
                                     key={product.id}
