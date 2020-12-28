@@ -26,7 +26,7 @@ class ShoppingCart extends Component {
         this.props.dispatch(decreaseItemQty(product));
     }
 
-    handleRemoveCartItem = product => {
+    handleRemoveCartItem = (product) => {
         this.props.dispatch(removeItem(product));
     };
 
@@ -41,22 +41,22 @@ class ShoppingCart extends Component {
             <div className="ps-section--shopping ps-shopping-cart">
                 <div className="container">
                     <div className="ps-section__header">
-                        <h1>Shopping Cart</h1>
+                        <h1>Giỏ hàng</h1>
                     </div>
                     <div className="ps-section__content">
                         <div className="table-responsive">
                             <table className="table ps-table--shopping-cart">
                                 <thead>
                                     <tr>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Total</th>
-                                        <th>Action</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng giá bán</th>
+                                        <th>Xoá</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {currentCartItems.map(product => (
+                                    {currentCartItems.map((product) => (
                                         <tr key={product.id}>
                                             <td>
                                                 <div className="ps-product--cart">
@@ -82,12 +82,6 @@ class ShoppingCart extends Component {
                                                                 {product.title}
                                                             </a>
                                                         </Link>
-                                                        <p>
-                                                            Sold By:
-                                                            <strong>
-                                                                {product.vendor}
-                                                            </strong>
-                                                        </p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -142,10 +136,10 @@ class ShoppingCart extends Component {
                             </table>
                         </div>
                         <div className="ps-section__cart-actions">
-                            <Link href="/shop">
+                            <Link href="/">
                                 <a>
                                     <i className="icon-arrow-left mr-2"></i>
-                                    Back to Shop
+                                    Tiếp tục mua sắm
                                 </a>
                             </Link>
                         </div>
@@ -156,7 +150,7 @@ class ShoppingCart extends Component {
                                 <div className="ps-block--shopping-total">
                                     <div className="ps-block__header">
                                         <p>
-                                            Subtotal <span> ${amount}</span>
+                                            Tạm tính <span> ${amount}</span>
                                         </p>
                                     </div>
                                     <div className="ps-block__content">
@@ -194,13 +188,13 @@ class ShoppingCart extends Component {
                                                 : ''}
                                         </ul>
                                         <h3>
-                                            Total <span>${amount}</span>
+                                            Tổng cộng <span>${amount}</span>
                                         </h3>
                                     </div>
                                 </div>
                                 <Link href="/account/checkout">
                                     <a className="ps-btn ps-btn--fullwidth">
-                                        Proceed to checkout
+                                        Thanh toán
                                     </a>
                                 </Link>
                             </div>
@@ -212,7 +206,7 @@ class ShoppingCart extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.cart;
 };
 export default connect(mapStateToProps)(ShoppingCart);

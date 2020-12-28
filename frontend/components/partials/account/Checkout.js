@@ -14,7 +14,7 @@ class Checkout extends Component {
             <div className="ps-checkout ps-section--shopping">
                 <div className="container">
                     <div className="ps-section__header">
-                        <h1>Checkout Information</h1>
+                        <h1>Thanh toán đơn hàng</h1>
                     </div>
                     <div className="ps-section__content">
                         <FormCheckoutInformation
@@ -29,7 +29,7 @@ class Checkout extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.cart;
 };
 export default connect(mapStateToProps)(Checkout);

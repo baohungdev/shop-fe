@@ -635,4 +635,16 @@
             align-items: center;
         }
     }
+
+    .ps-form__heading {
+        color: $color-dark-2;
+    }
+
+    .ps-block__footer {
+        .ps-btn {
+            :hover {
+                background-color: $color-1st-darker !important;
+            }
+        }
+    }
 }

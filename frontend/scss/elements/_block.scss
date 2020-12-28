@@ -2172,9 +2172,10 @@
         margin-bottom: 0;
         font-size: 24px;
         font-weight: 600;
+        color: $color-dark-2;
 
         span {
-            color: #ff3300;
+            color: $color-1st-darker;
             font-weight: 600;
             float: right;
         }
@@ -3316,14 +3317,21 @@
 
             strong {
                 font-size: 14px;
-                color: $color-heading;
+                color: $color-dark-2;
                 font-weight: 600;
                 text-transform: uppercase;
             }
 
             small {
+                color: $color-dark-2;
                 font-size: 16px;
             }
+        }
+    }
+
+    .ps-form__orders {
+        h3 {
+            color: $color-dark-2;
         }
     }
 
@@ -3345,7 +3353,7 @@
 
             small {
                 font-size: 14px;
-                color: $color-heading;
+                color: $color-dark-2;
             }
         }
     }

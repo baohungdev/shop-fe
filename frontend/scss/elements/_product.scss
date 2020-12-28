@@ -842,6 +842,7 @@
             vertical-align: top;
             max-height: 50px;
             font-size: 18px;
+            color: $color-heading;
 
             &.ps-btn--black {
                 color: #fff;
@@ -972,7 +973,7 @@
         }
 
         p {
-            color: $color-heading;
+            color: $color-dark;
             margin-bottom: 0;
 
             strong {

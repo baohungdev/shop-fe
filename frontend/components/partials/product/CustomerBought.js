@@ -133,13 +133,13 @@ class CustomerBought extends React.Component {
                         boxed === true ? 'boxed' : ''
                     }`}>
                     <div className="ps-section__header">
-                         <h3>Customers who bought this item also bought</h3>
+                        <h3>Sản phẩm bạn đã xem</h3>
                     </div>
                     <div className="ps-section__content">
                         <Slider
                             {...carouselFullwidth}
                             className="ps-carousel outside">
-                            {customerBought.map(product => (
+                            {customerBought.map((product) => (
                                 <Product
                                     product={product}
                                     key={product.title}
@@ -156,13 +156,13 @@ class CustomerBought extends React.Component {
                         boxed === true ? 'boxed' : ''
                     }`}>
                     <div className="ps-section__header">
-                        <h3>Customers who bought this item also bought</h3>
+                        <h3>Sản phẩm bạn đã xem</h3>
                     </div>
                     <div className="ps-section__content">
                         <Slider
                             {...carouselSetting}
                             className="ps-carousel outside">
-                            {customerBought.map(product => (
+                            {customerBought.map((product) => (
                                 <Product
                                     product={product}
                                     key={product.title}

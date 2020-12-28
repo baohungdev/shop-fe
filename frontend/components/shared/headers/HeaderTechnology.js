@@ -37,13 +37,11 @@ class HeaderTechnology extends Component {
 
     render() {
         return (
-            <header
-                className="header header--standard header--technology"
-                id="headerSticky">
+            <header className="header header--standard" id="headerSticky">
                 <div className="header__content">
                     <div className="container">
                         <div className="header__content-left">
-                            <Link href="/home/technology">
+                            <Link href="/">
                                 <a className="ps-logo">
                                     <img
                                         src="/static/img/logo-technology.png"

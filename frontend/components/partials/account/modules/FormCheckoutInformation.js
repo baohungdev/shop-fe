@@ -12,46 +12,47 @@ class FormCheckoutInformation extends Component {
     }
 
     componentDidMount = () => {
-        const { user } = this.props.auth.data
-        if(user) {
+        const { user } = this.props.auth.data;
+        if (user) {
             this.props.form.setFields({
-                text: {
-                  value: user.Email,
+                email: {
+                    value: user.email,
                 },
-                firstName: {
-                    value: user.FirstName,
+                name: {
+                    value: user.name,
                 },
-                lastName: {
-                    value: user.LastName,
+                phone: {
+                    value: user.phone,
                 },
                 address: {
-                    value: user.ShipAddress,
+                    value: user.address,
                 },
                 city: {
-                    value: user.ShipCity,
+                    value: user.city,
                 },
-                postalCode: {
-                    value: user.ShipPostalCode,
-                }
+                ward: {
+                    value: user.city,
+                },
+                district: {
+                    value: user.city,
+                },
             });
         }
-    }
+    };
 
-    handleLoginSubmit = e => {
+    handleLoginSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 const addressInfo = {
-                    email: values.text,
-                    firstName: values.firstName,
-                    lastName: values.lastName,
+                    email: values.email,
+                    name: values.name,
+                    phone: values.phone,
                     address: values.address,
-                    apartment: values.apartment,
                     city: values.city,
-                    postalCode: values.postalCode,
-                    keepUpdateNews: document.getElementById('keep-update-news').checked,
-                    keepUpdate: document.getElementById('keep-update').checked
-                }
+                    ward: values.ward,
+                    district: values.district,
+                };
                 this.props.dispatch(setShippingAddress({ addressInfo }));
                 Router.push('/account/shipping');
             } else {
@@ -71,65 +72,48 @@ class FormCheckoutInformation extends Component {
                         <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12">
                             <div className="ps-form__billing-info">
                                 <h3 className="ps-form__heading">
-                                    Contact information
+                                    Địa chỉ email
                                 </h3>
                                 <div className="form-group">
-                                    <Form.Item >
+                                    <Form.Item>
                                         {getFieldDecorator('text', {
                                             rules: [
                                                 {
                                                     required: true,
-                                                    message:
-                                                        'Enter an email or mobile phone number!',
+                                                    message: 'Email của bạn!',
                                                 },
                                             ],
                                         })(
                                             <Input
                                                 className="form-control"
-                                                type="text"
-                                                placeholder="Email or phone number"
+                                                type="email"
+                                                placeholder="Email của bạn"
                                                 // value={ user ? user.Email : '' }
-                                            />,
+                                            />
                                         )}
                                     </Form.Item>
                                 </div>
-                                <div className="form-group">
-                                    <div className="ps-checkbox">
-                                        <input
-                                            className="form-control"
-                                            type="checkbox"
-                                            id="keep-update-news"
-                                        />
-                                        <label htmlFor="keep-update-news">
-                                            Keep me up to date on news and
-                                            exclusive offers?
-                                        </label>
-                                    </div>
-                                </div>
                                 <h3 className="ps-form__heading">
-                                    Shipping address
+                                    Địa chỉ giao hàng
                                 </h3>
                                 <div className="row">
                                     <div className="col-sm-6">
                                         <div className="form-group">
                                             <Form.Item>
-                                                {getFieldDecorator(
-                                                    'firstName',
-                                                    {
-                                                        rules: [
-                                                            {
-                                                                required: true,
-                                                                message:
-                                                                    'Enter your first name!',
-                                                            },
-                                                        ],
-                                                    },
-                                                )(
+                                                {getFieldDecorator('name', {
+                                                    rules: [
+                                                        {
+                                                            required: true,
+                                                            message:
+                                                                'Vui lòng điền họ tên!',
+                                                        },
+                                                    ],
+                                                })(
                                                     <Input
                                                         className="form-control"
-                                                        type="text"
-                                                        placeholder="First Name"
-                                                    />,
+                                                        type="name"
+                                                        placeholder="Họ tên"
+                                                    />
                                                 )}
                                             </Form.Item>
                                         </div>
@@ -137,20 +121,20 @@ class FormCheckoutInformation extends Component {
                                     <div className="col-sm-6">
                                         <div className="form-group">
                                             <Form.Item>
-                                                {getFieldDecorator('lastName', {
+                                                {getFieldDecorator('phone', {
                                                     rules: [
                                                         {
                                                             required: true,
                                                             message:
-                                                                'Enter your last name!',
+                                                                'Vui lòng điền số điện thoại của bạn!',
                                                         },
                                                     ],
                                                 })(
                                                     <Input
                                                         className="form-control"
-                                                        type="text"
-                                                        placeholder="Last Name"
-                                                    />,
+                                                        type="phone"
+                                                        placeholder="Số điện thoại"
+                                                    />
                                                 )}
                                             </Form.Item>
                                         </div>
@@ -163,106 +147,93 @@ class FormCheckoutInformation extends Component {
                                                 {
                                                     required: true,
                                                     message:
-                                                        'Enter an address!',
+                                                        'Vui lòng điền địa chỉ của bạn!',
                                                 },
                                             ],
                                         })(
                                             <Input
                                                 className="form-control"
-                                                type="text"
-                                                placeholder="Address"
-                                            />,
-                                        )}
-                                    </Form.Item>
-                                </div>
-                                <div className="form-group">
-                                    <Form.Item>
-                                        {getFieldDecorator('apartment', {
-                                            rules: [
-                                                {
-                                                    required: false,
-                                                    message:
-                                                        'Enter an Apartment!',
-                                                },
-                                            ],
-                                        })(
-                                            <Input
-                                                className="form-control"
-                                                type="text"
-                                                placeholder="Apartment, suite, etc. (optional)"
-                                            />,
+                                                type="address"
+                                                placeholder="Địa chỉ giao hàng"
+                                            />
                                         )}
                                     </Form.Item>
                                 </div>
                                 <div className="row">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-4">
                                         <div className="form-group">
                                             <Form.Item>
                                                 {getFieldDecorator('city', {
                                                     rules: [
                                                         {
-                                                            required: false,
+                                                            required: true,
                                                             message:
-                                                                'Enter a city!',
+                                                                'Vui lòng chọn tỉnh thành!',
                                                         },
                                                     ],
                                                 })(
                                                     <Input
                                                         className="form-control"
                                                         type="city"
-                                                        placeholder="City"
-                                                    />,
+                                                        placeholder="Tỉnh thành"
+                                                    />
                                                 )}
                                             </Form.Item>
                                         </div>
                                     </div>
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-4">
                                         <div className="form-group">
                                             <Form.Item>
-                                                {getFieldDecorator(
-                                                    'postalCode',
-                                                    {
-                                                        rules: [
-                                                            {
-                                                                required: false,
-                                                                message:
-                                                                    'Enter a postal code!',
-                                                            },
-                                                        ],
-                                                    },
-                                                )(
+                                                {getFieldDecorator('district', {
+                                                    rules: [
+                                                        {
+                                                            required: true,
+                                                            message:
+                                                                'Vui lòng chọn quận huyện!',
+                                                        },
+                                                    ],
+                                                })(
                                                     <Input
                                                         className="form-control"
-                                                        type="postalCode"
-                                                        placeholder="Postal Code"
-                                                    />,
+                                                        type="district"
+                                                        placeholder="Quận huyện"
+                                                    />
                                                 )}
                                             </Form.Item>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="ps-checkbox">
-                                        <input
-                                            className="form-control"
-                                            type="checkbox"
-                                            id="keep-update"
-                                        />
-                                        <label htmlFor="keep-update">
-                                            Save this information for next time
-                                        </label>
+                                    <div className="col-sm-4">
+                                        <div className="form-group">
+                                            <Form.Item>
+                                                {getFieldDecorator('ward', {
+                                                    rules: [
+                                                        {
+                                                            required: true,
+                                                            message:
+                                                                'Vui lòng chọn phường xã!',
+                                                        },
+                                                    ],
+                                                })(
+                                                    <Input
+                                                        className="form-control"
+                                                        type="ward"
+                                                        placeholder="Phường xã"
+                                                    />
+                                                )}
+                                            </Form.Item>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="ps-form__submit">
                                     <Link href="/account/cart">
                                         <a>
                                             <i className="icon-arrow-left mr-2"></i>
-                                            Return to shopping cart
+                                            Quay về giỏ hàng
                                         </a>
                                     </Link>
                                     <div className="ps-block__footer">
                                         <button className="ps-btn">
-                                            Continue to shipping
+                                            Đặt mua
                                         </button>
                                     </div>
                                 </div>
@@ -270,49 +241,51 @@ class FormCheckoutInformation extends Component {
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12  ps-block--checkout-order">
                             <div className="ps-form__orders">
-                                <h3>Your order</h3>
+                                <h3>Đơn hàng</h3>
                                 <div className="ps-block--checkout-order">
                                     <div className="ps-block__content">
                                         <figure>
                                             <figcaption>
-                                                <strong>Product</strong>
-                                                <strong>total</strong>
+                                                <strong>Sản phẩm</strong>
+                                                <strong>tổng cộng</strong>
                                             </figcaption>
                                         </figure>
                                         <figure className="ps-block__items">
                                             {cartItems &&
-                                            cartItems.map(product => (
-                                                <Link
-                                                    href="/"
-                                                    key={product.id}>
-                                                    <a>
-                                                        <strong>
-                                                            {product.title}
-                                                            <span>
+                                                cartItems.map((product) => (
+                                                    <Link
+                                                        href={`/product/${product.id}`}
+                                                        key={product.id}>
+                                                        <a>
+                                                            <strong>
+                                                                {product.title}
+                                                                <span>
                                                                     x
-                                                                {
-                                                                    product.quantity
-                                                                }
+                                                                    {
+                                                                        product.quantity
+                                                                    }
                                                                 </span>
-                                                        </strong>
-                                                        <small>
-                                                            $
-                                                            {product.quantity *
-                                                            product.price}
-                                                        </small>
-                                                    </a>
-                                                </Link>
-                                            ))}
+                                                            </strong>
+                                                            <small>
+                                                                $
+                                                                {product.quantity *
+                                                                    product.price}
+                                                            </small>
+                                                        </a>
+                                                    </Link>
+                                                ))}
                                         </figure>
                                         <figure>
                                             <figcaption>
-                                                <strong>Subtotal</strong>
+                                                <strong>Tạm tính</strong>
                                                 <small>${amount}</small>
                                             </figcaption>
                                         </figure>
                                         <figure className="ps-block__shipping">
-                                            <h3>Shipping</h3>
-                                            <p>Calculated at next step</p>
+                                            <p>
+                                                Phí trên chưa bao gồm chi phí
+                                                vận chuyển
+                                            </p>
                                         </figure>
                                     </div>
                                 </div>
@@ -327,10 +300,10 @@ class FormCheckoutInformation extends Component {
 
 const WrapForm = Form.create()(FormCheckoutInformation);
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         cart: state.cart,
-        auth: state.auth
+        auth: state.auth,
     };
 };
 export default connect(mapStateToProps)(WrapForm);

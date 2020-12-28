@@ -1,18 +1,16 @@
-import React, { useEffect } from 'react';
-import Router, { useRouter } from 'next/router';
+import React from 'react';
+import Router from 'next/router';
 import { connect } from 'react-redux';
 
-import FooterDefault from '../../components/shared/footers/FooterDefault';
-import Newletters from '../../components/partials/commons/Newletters';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
 import CustomerBought from '../../components/partials/product/CustomerBought';
 import ProductDetailFullwidth from '../../components/elements/detail/ProductDetailFullwidth';
 import ProductWidgets from '../../components/partials/product/ProductWidgets';
 import NavigationList from '../../components/shared/navigation/NavigationList';
 import BreadCrumb from '../../components/elements/BreadCrumb';
-import RelatedProductFullwidth from '../../components/partials/product/RelatedProductFullwidth';
 import HeaderMobileProduct from '../../components/shared/header-mobile/HeaderMobileProduct';
 import { getProductsById } from '../../store/product/action';
-import HeaderProduct from '../../components/shared/headers/HeaderProduct';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 
 class ProductDefaultPage extends React.Component {
     constructor(props) {
@@ -23,7 +21,7 @@ class ProductDefaultPage extends React.Component {
         ctx.store.dispatch(getProductsById(ctx.query.pid));
         return { query: ctx.query };
     }
-    
+
     componentDidMount() {
         const { pid } = this.props.query;
         if (isNaN(pid)) {
@@ -40,17 +38,13 @@ class ProductDefaultPage extends React.Component {
                 url: '/',
             },
             {
-                text: 'Shop',
-                url: '/shop',
-            },
-            {
                 text: singleProduct.title,
             },
         ];
 
         return (
             <div className="site-content">
-                <HeaderProduct productData={singleProduct} />
+                <HeaderTechnology />
                 <HeaderMobileProduct />
                 <NavigationList />
                 <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
@@ -67,14 +61,12 @@ class ProductDefaultPage extends React.Component {
                             </div>
                         </div>
                         <CustomerBought layout="fullwidth" />
-                        <RelatedProductFullwidth />
                     </div>
                 </div>
-                <Newletters />
-                <FooterDefault />
+                <FooterFullwidth />
             </div>
         );
     }
 }
 
-export default connect(state => state.product)(ProductDefaultPage);
+export default connect((state) => state.product)(ProductDefaultPage);

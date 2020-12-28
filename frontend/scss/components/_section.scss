@@ -7,6 +7,7 @@
         border-bottom: 1px solid #e3e3e3;
 
         h3 {
+            color: $color-dark;
             margin-bottom: 0;
             font-weight: 600;
             font-size: 20px;
@@ -110,6 +111,7 @@
         padding-bottom: 100px;
 
         h1 {
+            color: $color-dark-2;
             font-size: 48px;
             font-weight: 600;
         }
@@ -1545,6 +1547,14 @@
 
             .form-control {
                 border-color: #ccc;
+            }
+        }
+
+        .ps-btn {
+            color: #fff;
+
+            &:hover {
+                background-color: $color-1st-darker;
             }
         }
 

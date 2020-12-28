@@ -1,7 +1,6 @@
 import React from 'react';
-import Newsletters from '../../components/partials/commons/Newletters';
-import FooterDefault from '../../components/shared/footers/FooterDefault';
-import HeaderDefault from '../../components/shared/headers/HeaderDefault';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 import BreadCrumb from '../../components/elements/BreadCrumb';
 import ShoppingCart from '../../components/partials/account/ShoppingCart';
 import HeaderMobile from '../../components/shared/headers/HeaderMobile';
@@ -10,24 +9,23 @@ import NavigationList from '../../components/shared/navigation/NavigationList';
 const ShoppingCartPage = () => {
     const breadCrumb = [
         {
-            text: 'Home',
+            text: 'Trang chủ',
             url: '/',
         },
         {
-            text: 'Shopping Cart',
+            text: 'Giỏ hàng',
         },
     ];
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <HeaderMobile />
             <NavigationList />
             <div className="ps-page--simple">
                 <BreadCrumb breacrumb={breadCrumb} />
                 <ShoppingCart />
             </div>
-            <Newsletters layout="container" />
-            <FooterDefault />
+            <FooterFullwidth />
         </div>
     );
 };

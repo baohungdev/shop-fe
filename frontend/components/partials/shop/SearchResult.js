@@ -23,7 +23,7 @@ class SearchResult extends Component {
         }
     }
 
-    handleChangeViewMode = event => {
+    handleChangeViewMode = (event) => {
         event.preventDefault();
         this.setState({ listView: !this.state.listView });
     };
@@ -40,18 +40,18 @@ class SearchResult extends Component {
                         <div className="ps-shopping__header">
                             {allProducts && allProducts.length > 0 ? (
                                 <p>
+                                    <span className="mr-1">Tìm thấy</span>
                                     <strong>
                                         {allProducts ? allProducts.length : 0}
                                     </strong>
-                                    <span className="ml-1">Products found</span>
                                 </p>
                             ) : (
-                                <p>Not found! Try with another keyword.</p>
+                                <p>Không tìm thấy bất kỳ sản phẩm nào</p>
                             )}
 
                             <div className="ps-shopping__actions">
                                 <div className="ps-shopping__view">
-                                    <p>View</p>
+                                    <p>Hiển thị</p>
                                     <ul className="ps-tab-list">
                                         <li
                                             className={
@@ -90,7 +90,7 @@ class SearchResult extends Component {
                                 <div className="ps-shopping-product">
                                     <div className="row">
                                         {allProducts && allProducts.length > 0
-                                            ? allProducts.map(item => (
+                                            ? allProducts.map((item) => (
                                                   <div
                                                       className="col-lg-4 col-md-4 col-sm-6 col-6 "
                                                       key={item.id}>
@@ -103,7 +103,7 @@ class SearchResult extends Component {
                             ) : (
                                 <div className="ps-shopping-product">
                                     {allProducts && allProducts.length > 0
-                                        ? allProducts.map(item => (
+                                        ? allProducts.map((item) => (
                                               <ProductWide
                                                   product={item}
                                                   key={item.id}
@@ -126,7 +126,7 @@ class SearchResult extends Component {
                                         </li>
                                         <li>
                                             <a href="#">
-                                                Next Page
+                                                Tiếp
                                                 <i className="icon-chevron-right"></i>
                                             </a>
                                         </li>
@@ -141,7 +141,7 @@ class SearchResult extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.product;
 };
 export default withRouter(connect(mapStateToProps)(SearchResult));

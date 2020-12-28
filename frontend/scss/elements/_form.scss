@@ -490,10 +490,12 @@ textarea.form-control {
         line-height: 1em;
 
         &.up {
+            color: $color-dark-2;
             right: 10px;
         }
 
         &.down {
+            color: $color-dark-2;
             left: 10px;
         }
     }
