@@ -1,17 +1,14 @@
 import React from 'react';
-import FooterDefault from '../../components/shared/footers/FooterDefault';
-
-import Newletters from '../../components/partials/commons/Newletters';
-import HeaderDefault from '../../components/shared/headers/HeaderDefault';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 import HeaderMobile from '../../components/shared/headers/HeaderMobile';
 import NavigationList from '../../components/shared/navigation/NavigationList';
 import Link from 'next/link';
 
 const Page404 = () => {
-
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <HeaderMobile />
             <NavigationList />
             <div className="ps-page--404">
@@ -19,12 +16,12 @@ const Page404 = () => {
                     <div className="ps-section__content">
                         <figure>
                             <img src="/static/img/404.jpg" alt="" />
-                            <h3>Ohh! Page not found</h3>
+                            <h3>Không tìm thấy trang</h3>
                             <p>
-                                It seems we can't find what you're looking for.
-                                Perhaps searching can help or go back to
+                                Trang bạn tìm kiếm không tồn tại, vui lòng kiểm
+                                tra lại hoặc quay về
                                 <Link href="/">
-                                    <a> Homepage</a>
+                                    <a> Trang chủ</a>
                                 </Link>
                             </p>
                         </figure>
@@ -44,8 +41,7 @@ const Page404 = () => {
                     </div>
                 </div>
             </div>
-            <Newletters layout="container" />
-            <FooterDefault />
+            <FooterFullwidth />
         </div>
     );
 };

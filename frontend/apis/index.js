@@ -24,4 +24,5 @@ export const endpoints = {
     ADDWISHLIST: '/wishlist/add',
     REMOVEWISHLIST: '/wishlist/remove',
     CLEARWISHLIST: '/wishlist/clear',
-}
+    PRODUCTS: '/product/shop',
+};

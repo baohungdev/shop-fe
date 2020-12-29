@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MiniCart from './MiniCart';
-import AccountQuickLinks from './AccountQuickLinks';
 
 class MobileHeaderActions extends Component {
     constructor(props) {
@@ -13,17 +12,12 @@ class MobileHeaderActions extends Component {
         return (
             <div className="header__actions">
                 <MiniCart />
-                {auth.isLoggedIn && Boolean(auth.isLoggedIn) === true ? (
-                    <AccountQuickLinks isLoggedIn={true} />
-                ) : (
-                    <AccountQuickLinks isLoggedIn={false} />
-                )}
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state;
 };
 

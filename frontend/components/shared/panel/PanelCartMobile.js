@@ -12,7 +12,7 @@ class PanelCartMobile extends Component {
         this.props.dispatch(getCart());
     }
 
-    handleRemoveCartItem = product => {
+    handleRemoveCartItem = (product) => {
         this.props.dispatch(removeItem(product));
     };
 
@@ -21,13 +21,13 @@ class PanelCartMobile extends Component {
         return (
             <div className="ps-panel--wrapper">
                 <div className="ps-panel__header">
-                    <h3>Shopping Cart</h3>
+                    <h3>Giỏ hàng</h3>
                 </div>
                 <div className="ps-panel__content">
                     <div className="ps-cart--mobile">
                         <div className="ps-cart__content">
                             {cartItems && cartItems.length > 0 ? (
-                                cartItems.map(product => (
+                                cartItems.map((product) => (
                                     <div
                                         className="ps-product--cart-mobile"
                                         key={product.id}>
@@ -59,10 +59,6 @@ class PanelCartMobile extends Component {
                                                     {product.title}
                                                 </a>
                                             </Link>
-                                            <p>
-                                                <strong>Sold by:</strong>{' '}
-                                                {product.vendor}
-                                            </p>
                                             <small>
                                                 {product.quantity} x $
                                                 {product.price}
@@ -72,29 +68,31 @@ class PanelCartMobile extends Component {
                                 ))
                             ) : (
                                 <div className="ps-cart__items">
-                                    <span>No products in cart</span>
+                                    <span>
+                                        Bạn chưa có sản phẩm nào trong giỏ hàng
+                                    </span>
                                 </div>
                             )}
                         </div>
                         {cartItems && cartItems.length > 0 ? (
                             <div className="ps-cart__footer">
                                 <h3>
-                                    Sub Total:<strong>${amount}</strong>
+                                    Tạm tính:<strong>${amount}</strong>
                                 </h3>
                                 <figure>
                                     <Link href="/account/shopping-cart">
-                                        <a className="ps-btn">View Cart</a>
+                                        <a className="ps-btn">Xem toàn bộ</a>
                                     </Link>
                                     <Link href="/account/shopping-cart">
-                                        <a className="ps-btn">Checkout</a>
+                                        <a className="ps-btn">Thanh toán</a>
                                     </Link>
                                 </figure>
                             </div>
                         ) : (
                             <div className="ps-cart__footer">
-                                <Link href="/shop">
+                                <Link href="/">
                                     <a className="ps-btn ps-btn--fullwidth">
-                                        Shop now
+                                        Mua sắm
                                     </a>
                                 </Link>
                             </div>
@@ -106,7 +104,7 @@ class PanelCartMobile extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.cart;
 };
 export default connect(mapStateToProps)(PanelCartMobile);

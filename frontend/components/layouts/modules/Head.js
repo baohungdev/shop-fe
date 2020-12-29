@@ -13,11 +13,8 @@ const StyleSheets = () => (
         <meta name="format-detection" content="telephone=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="author" content="nouthemes" />
-        <meta name="keywords" content="Martfury, React, eCommerce, Template" />
-        <meta
-            name="description"
-            content="Martfury - React eCommerce Template"
-        />
+        <meta name="keywords" content="Metyl, mua sắm, trực tuyến, online" />
+        <meta name="description" content="Metyl - Mua sắm không giới hạn" />
         <link
             href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext"
             rel="stylesheet"

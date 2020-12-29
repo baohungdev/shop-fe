@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import { Rate } from 'antd';
 import { connect } from 'react-redux';
-import Rating from '../Rating';
 
 class ProductResult extends Component {
     constructor(props) {
@@ -24,10 +22,6 @@ class ProductResult extends Component {
                     <Link href="/product/[pid]" as={`/product/${product.id}`}>
                         <a className="ps-product__title">{product.title}</a>
                     </Link>
-                    <div className="ps-product__rating">
-                        <Rating />
-                        <span>{product.ratingCount}</span>
-                    </div>
                     {product.sale === true ? (
                         <p className="ps-product__price sale">
                             {currency ? currency.symbol : '$'}
@@ -49,7 +43,7 @@ class ProductResult extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.setting;
 };
 export default connect(mapStateToProps)(ProductResult);

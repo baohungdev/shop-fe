@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import Rating from '../../../Rating';
 import { addItem } from '../../../../../store/cart/action';
-import { addItemToCompare } from '../../../../../store/compare/action';
-import { addItemToWishlist } from '../../../../../store/wishlist/action';
 
 class InformationDefault extends Component {
     constructor(props) {
@@ -20,18 +17,6 @@ class InformationDefault extends Component {
         let tempProduct = product;
         tempProduct.quantity = this.state.quantity;
         this.props.dispatch(addItem(product));
-    };
-
-    handleAddItemToCompare = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        this.props.dispatch(addItemToCompare(product));
-    };
-
-    handleAddItemToWishlist = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        this.props.dispatch(addItemToWishlist(product));
     };
 
     handleIncreaseItemQty = (e) => {
@@ -68,6 +53,15 @@ class InformationDefault extends Component {
                     </h4>
                 )}
                 <div className="ps-product__desc">
+                    <p>
+                        Trạng thái:
+                        <a href="shop-default.html">
+                            <strong className="ps-tag--out-stock">
+                                {' '}
+                                Out of stock
+                            </strong>
+                        </a>
+                    </p>
                     <ul className="ps-list--dot">
                         <li>Unrestrained and portable active stereo speaker</li>
                         <li> Free from the confines of wires and chords</li>

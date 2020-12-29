@@ -11,7 +11,7 @@ function reducer(state = initialState, action) {
         case actionTypes.GET_PRODUCTS_SUCCESS:
             return {
                 ...state,
-                ...{ allProducts: action.data },
+                ...{ allProducts: action.payload.data.data },
             };
         case actionTypes.GET_PRODUCT_BY_ID_SUCCESS:
             return {

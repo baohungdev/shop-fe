@@ -1,8 +1,7 @@
 import React from 'react';
 
-import FooterDefault from '../../components/shared/footers/FooterDefault';
-import HeaderDefault from '../../components/shared/headers/HeaderDefault';
-import Newsletter from '../../components/partials/commons/Newletters';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 import BreadCrumb from '../../components/elements/BreadCrumb';
 import ContactInfo from '../../components/partials/page/ContactInfo';
 import ContactForm from '../../components/partials/page/ContactForm';
@@ -13,17 +12,17 @@ import ContactMap from '../../components/partials/page/ContactMap';
 const ContactUsPage = () => {
     const breadCrumb = [
         {
-            text: 'Home',
+            text: 'Trang chủ',
             url: '/',
         },
         {
-            text: 'ContactUs',
+            text: 'Liên hệ với chúng tôi',
         },
     ];
 
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <HeaderMobile />
             <NavigationList />
             <div className="ps-page--single" id="contact-us">
@@ -32,8 +31,7 @@ const ContactUsPage = () => {
                 <ContactInfo />
                 <ContactForm />
             </div>
-            <Newsletter layout="container" />
-            <FooterDefault />
+            <FooterFullwidth />
         </div>
     );
 };

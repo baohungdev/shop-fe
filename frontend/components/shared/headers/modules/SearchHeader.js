@@ -210,7 +210,7 @@ class SearchHeader extends Component {
                     onChange={this.handleSearch.bind(this)}
                 />
                 <button onClick={this.handleSubmit.bind(this)}>
-                    <i class="icon-magnifier"></i>
+                    <i className="icon-magnifier"></i>
                 </button>
                 <div
                     className={`ps-panel--search-result${
@@ -225,12 +225,12 @@ class SearchHeader extends Component {
                                 />
                             ))
                         ) : (
-                            <span>Not found! Try with another keyword.</span>
+                            <span>Không có kết quả.</span>
                         )}
                     </div>
                     <div className="ps-panel__footer text-center">
                         <Link href="/search">
-                            <a>See all results</a>
+                            <a>Xem tất cả kết quả</a>
                         </Link>
                     </div>
                 </div>

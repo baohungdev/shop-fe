@@ -11,35 +11,6 @@ class FormCheckoutInformation extends Component {
         super(props);
     }
 
-    componentDidMount = () => {
-        const { user } = this.props.auth.data;
-        if (user) {
-            this.props.form.setFields({
-                email: {
-                    value: user.email,
-                },
-                name: {
-                    value: user.name,
-                },
-                phone: {
-                    value: user.phone,
-                },
-                address: {
-                    value: user.address,
-                },
-                city: {
-                    value: user.city,
-                },
-                ward: {
-                    value: user.city,
-                },
-                district: {
-                    value: user.city,
-                },
-            });
-        }
-    };
-
     handleLoginSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {

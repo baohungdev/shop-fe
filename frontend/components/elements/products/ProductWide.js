@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import { connect } from 'react-redux';
 import { addItem } from '../../../store/cart/action';
-import { addItemToCompare } from '../../../store/compare/action';
-import { addItemToWishlist } from '../../../store/wishlist/action';
 
 class ProductWide extends Component {
     constructor(props) {
@@ -17,18 +15,6 @@ class ProductWide extends Component {
         e.preventDefault();
         const { product } = this.props;
         this.props.dispatch(addItem(product));
-    };
-
-    handleAddItemToCompare = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        this.props.dispatch(addItemToCompare(product));
-    };
-
-    handleAddItemToWishlist = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        this.props.dispatch(addItemToWishlist(product));
     };
 
     handleShowQuickView = (e) => {

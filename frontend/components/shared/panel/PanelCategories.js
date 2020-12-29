@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, } from 'antd';
+import { Menu } from 'antd';
 import Link from 'next/link';
 
 const { SubMenu } = Menu;
@@ -14,9 +14,9 @@ class PanelCategories extends Component {
     state = {
         openKeys: ['sub1'],
     };
-    onOpenChange = openKeys => {
+    onOpenChange = (openKeys) => {
         const latestOpenKey = openKeys.find(
-            key => this.state.openKeys.indexOf(key) === -1
+            (key) => this.state.openKeys.indexOf(key) === -1
         );
         if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
             this.setState({ openKeys });
@@ -81,14 +81,14 @@ class PanelCategories extends Component {
         return (
             <div className="ps-panel__wrapper">
                 <div className="ps-panel__header">
-                    <h3>Categories</h3>
+                    <h3>Loại sản phẩm</h3>
                 </div>
                 <div className="ps-panel__content">
                     <Menu
                         mode="inline"
                         openKeys={this.state.openKeys}
                         onOpenChange={this.onOpenChange}>
-                        {shopCategories.map(category => (
+                        {shopCategories.map((category) => (
                             <Menu.Item key={category.text}>
                                 <Link href={category.url}>
                                     <a>{category.text}</a>

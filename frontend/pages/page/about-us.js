@@ -1,8 +1,7 @@
 import React from 'react';
 
-import FooterDefault from '../../components/shared/footers/FooterDefault';
-import HeaderDefault from '../../components/shared/headers/HeaderDefault';
-import Newsletter from '../../components/partials/commons/Newletters';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 import BreadCrumb from '../../components/elements/BreadCrumb';
 import OurTeam from '../../components/partials/page/about-us/OurTeam';
 import AboutAwards from '../../components/partials/page/about-us/AboutAwards';
@@ -12,16 +11,16 @@ import NavigationList from '../../components/shared/navigation/NavigationList';
 const AboutUsPage = () => {
     const breadCrumb = [
         {
-            text: 'Home',
+            text: 'Trang chủ',
             url: '/',
         },
         {
-            text: 'About Us',
+            text: 'Giới thiệu Metyl',
         },
     ];
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <HeaderMobile />
             <NavigationList />
             <div className="ps-page--single">
@@ -30,8 +29,7 @@ const AboutUsPage = () => {
                 <OurTeam />
                 <AboutAwards />
             </div>
-            <Newsletter layout="container" />
-            <FooterDefault />
+            <FooterFullwidth />
         </div>
     );
 };

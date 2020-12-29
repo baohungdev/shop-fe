@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Drawer } from 'antd';
-import PanelMenu from '../panel/PanelMenu';
 import PanelCartMobile from '../panel/PanelCartMobile';
 import PanelSearch from '../panel/PanelSearch';
 import PanelCategories from '../panel/PanelCategories';
@@ -20,15 +19,6 @@ class NavigationList extends Component {
     handleDrawerClose = () => {
         this.setState({
             menuDrawer: false,
-            cartDrawer: false,
-            searchDrawer: false,
-            categoriesDrawer: false,
-        });
-    };
-
-    handleShowMenuDrawer = () => {
-        this.setState({
-            menuDrawer: !this.state.menuDrawer,
             cartDrawer: false,
             searchDrawer: false,
             categoriesDrawer: false,
@@ -75,14 +65,6 @@ class NavigationList extends Component {
                     placement="right"
                     closable={false}
                     onClose={this.handleDrawerClose}
-                    visible={this.state.menuDrawer}>
-                    <PanelMenu />
-                </Drawer>
-                <Drawer
-                    className="ps-panel--mobile"
-                    placement="right"
-                    closable={false}
-                    onClose={this.handleDrawerClose}
                     visible={this.state.cartDrawer}>
                     <PanelCartMobile />
                 </Drawer>
@@ -105,19 +87,11 @@ class NavigationList extends Component {
                 <div className="navigation__content">
                     <a
                         className={`navigation__item ${
-                            menuDrawer === true ? 'active' : ''
-                        }`}
-                        onClick={this.handleShowMenuDrawer}>
-                        <i className="icon-menu"></i>
-                        <span> Menu</span>
-                    </a>
-                    <a
-                        className={`navigation__item ${
                             categoriesDrawer === true ? 'active' : ''
                         }`}
                         onClick={this.handleShowCategoriesDrawer}>
                         <i className="icon-list4"></i>
-                        <span> Categories</span>
+                        <span> Loại sản phẩm</span>
                     </a>
                     <a
                         className={`navigation__item ${
@@ -125,7 +99,7 @@ class NavigationList extends Component {
                         }`}
                         onClick={this.handleShowSearchDrawer}>
                         <i className="icon-magnifier"></i>
-                        <span> Search</span>
+                        <span> Tìm kiếm</span>
                     </a>
                     <a
                         className={`navigation__item ${
@@ -133,7 +107,7 @@ class NavigationList extends Component {
                         }`}
                         onClick={this.handleShowCartDrawer}>
                         <i className="icon-bag2"></i>
-                        <span> Cart</span>
+                        <span> Giỏ hàngCart</span>
                     </a>
                 </div>
             </div>
@@ -141,7 +115,7 @@ class NavigationList extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return state.setting;
 };
 export default connect(mapStateToProps)(NavigationList);

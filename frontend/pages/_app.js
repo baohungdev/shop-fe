@@ -8,7 +8,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import createStore from '../store/store';
 import DefaultLayout from '../components/layouts/DefaultLayout.js';
 import Alert from '../components/layouts/Alert';
-import axios from 'axios';
 
 import '../scss/style.scss';
 
@@ -19,7 +18,7 @@ class MyApp extends App {
     }
 
     componentDidMount() {
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('__next').classList.add('loaded');
         }, 50);
 
@@ -28,7 +27,8 @@ class MyApp extends App {
     render() {
         const { Component, pageProps, store } = this.props;
         const getLayout =
-            Component.getLayout || (page => <DefaultLayout children={page} />);
+            Component.getLayout ||
+            ((page) => <DefaultLayout children={page} />);
         return getLayout(
             <Provider store={store}>
                 <PersistGate

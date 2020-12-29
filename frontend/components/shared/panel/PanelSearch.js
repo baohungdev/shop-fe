@@ -16,7 +16,7 @@ class PanelSearch extends Component {
                             <input
                                 className="form-control"
                                 type="text"
-                                placeholder="Search something..."
+                                placeholder="Tìm kiếm sản phẩm..."
                             />
                             <button>
                                 <i className="icon-magnifier"></i>

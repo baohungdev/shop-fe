@@ -34,125 +34,54 @@ class ShopWidget extends Component {
         const shopCategories = [
             {
                 text: 'All Products',
-                url: '/shop',
+                url: '/',
             },
             {
                 text: 'Clothing & Apparel',
-                url: '/shop?category=clothing',
+                url: '/?category=clothing',
             },
             {
                 text: 'Garden & Kitchen',
-                url: '/shop?category=garden',
+                url: '/?category=garden',
             },
             {
                 text: 'Consumer Electrics',
-                url: '/shop?category=electronic',
+                url: '/?category=electronic',
             },
             {
                 text: 'Health & Beauty',
-                url: '/shop?category=beauty',
+                url: '/?category=beauty',
             },
             {
                 text: 'Computers & Technologies',
-                url: '/shop?category=technologies',
+                url: '/?category=technologies',
             },
             {
                 text: 'Jewelry & Watches',
-                url: '/shop?category=jewelry',
+                url: '/?category=jewelry',
             },
             {
                 text: 'Phones & Accessories',
-                url: '/shop?category=phone',
+                url: '/?category=phone',
             },
             {
                 text: 'Sport & Outdoor',
-                url: '/shop?category=sport',
+                url: '/?category=sport',
             },
             {
                 text: 'Babies & Moms',
-                url: '/shop?category=baby',
+                url: '/?category=baby',
             },
             {
                 text: 'Books & Office',
-                url: '/shop?category=book',
+                url: '/?category=book',
             },
             {
                 text: 'Cars & Motocycles',
-                url: '/shop?category=cars',
+                url: '/?category=cars',
             },
         ];
-        const brands = [
-            {
-                id: '1',
-                value: 'apple',
-                label: 'Apple',
-            },
-            {
-                id: '2',
-                value: 'marshall',
-                label: 'Marshall',
-            },
-            {
-                id: '3',
-                value: 'herschel',
-                label: 'Herschel',
-            },
-            {
-                id: '4',
-                value: 'microsoft',
-                label: 'Microsoft',
-            },
-            {
-                id: '5',
-                value: 'megasystem',
-                label: 'Mega System',
-            },
-            {
-                id: '6',
-                value: 'sony',
-                label: 'Sony',
-            },
-            {
-                id: '7',
-                value: 'flatfuniture',
-                label: 'Flat Funiture',
-            },
-            {
-                id: '8',
-                value: 'gucci',
-                label: 'Gucci',
-            },
-            {
-                id: '8',
-                value: 'asus',
-                label: 'asus',
-            },
-            {
-                id: '9',
-                value: 'samsung',
-                label: 'Samsung',
-            },
-            {
-                id: '10',
-                value: 'lg',
-                label: 'LG Electronics',
-            },
-            {
-                id: '11',
-                value: 'yamaha',
-                label: 'Yamaha',
-            },
-            {
-                id: '12',
-                value: 'gopro',
-                label: 'Gopro',
-            },
-            {
-                id: '13',
-                value: 'unilever',
-                label: 'Unilever',
-            },
-        ];
+
         return (
             <div className="ps-layout__left">
                 <aside className="widget widget_shop">

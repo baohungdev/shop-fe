@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Rate } from 'antd';
 import { addItem } from '../../../../../store/cart/action';
 import Link from 'next/link';
-import Rating from '../../../Rating';
 class InformationQuickView extends Component {
     constructor(props) {
         super(props);

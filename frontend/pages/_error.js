@@ -1,48 +1,42 @@
 import React from 'react';
 import Link from 'next/link';
 
-import FooterDefault from '../components/shared/footers/FooterDefault';
-import HeaderDefault from '../components/shared/headers/HeaderDefault';
+import FooterFullwidth from '../components/shared/footers/FooterFullwidth';
+import HeaderTechnology from '../components/shared/headers/HeaderTechnology';
 
 function Error({ statusCode }) {
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <div className="ps-page--404">
                 <div className="container">
                     <div className="ps-section__content">
                         {statusCode ? (
                             <figure>
                                 <img src="/static/img/404.jpg" alt="" />
-                                <h3>Ohh! Page not found</h3>
+                                <h3>Không tìm thấy trang bạn yêu cầu</h3>
                                 <p>
-                                    It seems we can't find what you're looking for. Perhaps
-                                    searching can help or go back to
+                                    Trang bạn tìm kiếm không tồn tại, hãy thử
+                                    tìm kiếm một trang khác hoặc quay về
                                     <Link href="/">
-                                        <a> Homepage</a>
+                                        <a> Trang chủ</a>
                                     </Link>
                                 </p>
                             </figure>
                         ) : (
                             <figure>
-                                <h3>An error occurred on client</h3>
+                                <h3>
+                                    Đã có lỗi xảy ra, vui lòng refresh lại trình
+                                    duyệt
+                                </h3>
                             </figure>
                         )}
-                        <form className="ps-form--widget-search" action="do_action" method="get">
-                            <input className="form-control" type="text" placeholder="Search..." />
-                            <button>
-                                <i className="icon-magnifier"></i>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>
-            <FooterDefault />
+            <FooterFullwidth />
         </div>
     );
 }
-
-
-
 
 export default Error;

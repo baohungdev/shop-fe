@@ -7,11 +7,7 @@ import NavigationList from '../components/shared/navigation/NavigationList';
 import ShopBanner from '../components/partials/shop/ShopBanner';
 import SiteFeatures from '../components/partials/homepage/home-default/SiteFeatures';
 import HeaderTechnology from '../components/shared/headers/HeaderTechnology';
-import {
-    getProducts,
-    getProductsByCategory,
-    getProductsByBrand,
-} from '../store/product/action';
+import { getProducts, getProductsByCategory } from '../store/product/action';
 
 class ShopDefaultPage extends React.Component {
     constructor(props) {
@@ -23,28 +19,15 @@ class ShopDefaultPage extends React.Component {
             if (ctx.query.category) {
                 ctx.store.dispatch(getProductsByCategory(ctx.query.category));
             } else {
-                if (ctx.query.brand !== '') {
-                    ctx.store.dispatch(getProductsByBrand(ctx.query.brand));
-                } else {
-                    ctx.store.dispatch(getProducts());
-                }
+                await ctx.store.dispatch(getProducts());
             }
         } else {
-            ctx.store.dispatch(getProducts());
+            await ctx.store.dispatch(getProducts());
         }
-        return { query: ctx.query };
+        return { query: ctx.query, allProducts: ctx.store.getState().product };
     }
 
     render() {
-        const breadCrumb = [
-            {
-                text: 'Home',
-                url: '/',
-            },
-            {
-                text: 'Shop Default',
-            },
-        ];
         const { allProducts } = this.props;
         return (
             <div className="site-content">

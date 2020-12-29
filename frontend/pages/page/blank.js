@@ -1,34 +1,32 @@
 import React from 'react';
-import FooterDefault from '../../components/shared/footers/FooterDefault';
 import BreadCrumb from '../../components/elements/BreadCrumb';
-import Newletters from '../../components/partials/commons/Newletters';
-import HeaderDefault from '../../components/shared/headers/HeaderDefault';
+import HeaderTechnology from '../../components/shared/headers/HeaderTechnology';
 import HeaderMobile from '../../components/shared/headers/HeaderMobile';
 import NavigationList from '../../components/shared/navigation/NavigationList';
 import BlankContent from '../../components/partials/page/Blank';
+import FooterFullwidth from '../../components/shared/footers/FooterFullwidth';
 
 const BlankPage = () => {
     const breadCrumb = [
         {
-            text: 'Home',
+            text: 'Trang chủ',
             url: '/',
         },
         {
-            text: 'Blank Page',
+            text: 'Trang trống',
         },
     ];
 
     return (
         <div className="site-content">
-            <HeaderDefault />
+            <HeaderTechnology />
             <HeaderMobile />
             <NavigationList />
             <div className="ps-page--single">
                 <BreadCrumb breacrumb={breadCrumb} layout="fullwidth" />
-                <BlankContent/>
+                <BlankContent />
             </div>
-            <Newletters layout="container" />
-            <FooterDefault />
+            <FooterFullwidth />
         </div>
     );
 };

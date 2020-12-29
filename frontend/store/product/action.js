@@ -11,7 +11,14 @@ export const actionTypes = {
 };
 
 export function getProducts() {
-    return { type: actionTypes.GET_PRODUCTS };
+    return {
+        type: actionTypes.GET_PRODUCTS,
+        payload: {
+            request: {
+                url: '/product/shop',
+            },
+        },
+    };
 }
 
 export function getProductsSuccess(data) {

@@ -1,6 +1,7 @@
-import { all, put, takeEvery } from 'redux-saga/effects';
+import { all, put, takeEvery, call } from 'redux-saga/effects';
 import { polyfill } from 'es6-promise';
 import { products } from '../../public/static/data/product';
+import * as productsApi from '../../apis/products';
 
 import {
     actionTypes,
@@ -13,8 +14,15 @@ polyfill();
 
 function* getProductsSaga() {
     try {
-        const data = products;
-        yield put(getProductsSuccess(data));
+        // const data = products;
+        const response = yield call(productsApi.fetchProducts);
+
+        if (!response.success) {
+            yield put(getProductsError(response));
+            return;
+        }
+
+        yield put(getProductsSuccess(response));
     } catch (err) {
         yield put(getProductsError(err));
     }
@@ -27,7 +35,7 @@ function* getProductById({ id }) {
          */
         const data = products;
         if (id !== undefined) {
-            const filteredProduct = data.filter(product => product.id === id);
+            const filteredProduct = data.filter((product) => product.id === id);
             if (filteredProduct.length > 0) {
                 yield put(getSingleProductsSuccess(filteredProduct[0]));
             }
@@ -46,8 +54,8 @@ function* getProductByCategorySaga({ category }) {
          */
         const data = products;
         if (category !== undefined) {
-            const filteredProduct = data.filter(product =>
-                product.categories.some(cat => cat.value == category)
+            const filteredProduct = data.filter((product) =>
+                product.categories.some((cat) => cat.value == category)
             );
 
             yield put(getProductsSuccess(filteredProduct));
@@ -66,7 +74,7 @@ function* getProductByPriceRangeSaga({ payload }) {
          */
         const data = products;
         const filteredProduct = data.filter(
-            product =>
+            (product) =>
                 product.price >= payload[0] && product.price <= payload[1]
         );
         yield put(getProductsSuccess(filteredProduct));
@@ -90,8 +98,8 @@ function* getProductByBrandSaga({ brand }) {
             });
             yield put(getProductsSuccess(filterResult));
         } else {
-            const filteredProduct = data.filter(product =>
-                product.brand.some(brandItem => brandItem.value === brand)
+            const filteredProduct = data.filter((product) =>
+                product.brand.some((brandItem) => brandItem.value === brand)
             );
             yield put(getProductsSuccess(filteredProduct));
         }
@@ -107,7 +115,7 @@ function* getProductByKeywordSaga({ keyword }) {
          */
         const data = products;
         let regexp = new RegExp(keyword.toLowerCase(), 'g');
-        const filteredProduct = data.filter(product =>
+        const filteredProduct = data.filter((product) =>
             product.title.toLowerCase().match(regexp)
         );
         if (filteredProduct > 0) {
@@ -122,24 +130,25 @@ function* getProductByKeywordSaga({ keyword }) {
 }
 
 export default function* rootSaga() {
-    yield all([takeEvery(actionTypes.GET_PRODUCTS, getProductsSaga)]);
-    yield all([
-        takeEvery(
-            actionTypes.GET_PRODUCTS_BY_CATEGORY,
-            getProductByCategorySaga
-        ),
-    ]);
-    yield all([
-        takeEvery(
-            actionTypes.GET_PRODUCTS_BY_PRICE_RANGE,
-            getProductByPriceRangeSaga
-        ),
-    ]);
-    yield all([
-        takeEvery(actionTypes.GET_PRODUCTS_BY_BRAND, getProductByBrandSaga),
-    ]);
-    yield all([
-        takeEvery(actionTypes.GET_PRODUCTS_BY_KEYWORD, getProductByKeywordSaga),
-    ]);
-    yield all([takeEvery(actionTypes.GET_PRODUCT_BY_ID, getProductById)]);
+    // yield all([takeEvery(actionTypes.GET_PRODUCTS, getProductsSaga)]);
+    // yield all([takeEvery(actionTypes.GET_PRODUCTS, getProductsSaga)]);
+    // yield all([
+    //     takeEvery(
+    //         actionTypes.GET_PRODUCTS_BY_CATEGORY,
+    //         getProductByCategorySaga
+    //     ),
+    // ]);
+    // yield all([
+    //     takeEvery(
+    //         actionTypes.GET_PRODUCTS_BY_PRICE_RANGE,
+    //         getProductByPriceRangeSaga
+    //     ),
+    // ]);
+    // yield all([
+    //     takeEvery(actionTypes.GET_PRODUCTS_BY_BRAND, getProductByBrandSaga),
+    // ]);
+    // yield all([
+    //     takeEvery(actionTypes.GET_PRODUCTS_BY_KEYWORD, getProductByKeywordSaga),
+    // ]);
+    // yield all([takeEvery(actionTypes.GET_PRODUCT_BY_ID, getProductById)]);
 }

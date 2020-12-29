@@ -2,9 +2,9 @@ import { actionTypes } from './action';
 
 export const initialState = {
     currency: {
-        symbol: "$",
-        text: 'USD'
-    }
+        symbol: 'đ',
+        text: 'VND',
+    },
 };
 
 function reducer(state = initialState, action) {

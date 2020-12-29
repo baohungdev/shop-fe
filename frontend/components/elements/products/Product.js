@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../../store/cart/action';
-import { addItemToCompare } from '../../../store/compare/action';
-import { addItemToWishlist } from '../../../store/wishlist/action';
 import Link from 'next/link';
 import { Rate, Modal } from 'antd';
 import ProductDetailQuickView from '../detail/ProductDetailQuickView';
-import Rating from '../Rating';
 
 class Product extends Component {
     constructor(props) {
@@ -20,18 +17,6 @@ class Product extends Component {
         e.preventDefault();
         const { product } = this.props;
         this.props.dispatch(addItem(product));
-    };
-
-    handleAddItemToCompare = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        this.props.dispatch(addItemToCompare(product));
-    };
-
-    handleAddItemToWishlist = (e) => {
-        e.preventDefault();
-        const { product } = this.props;
-        this.props.dispatch(addItemToWishlist(product));
     };
 
     handleShowQuickView = (e) => {
